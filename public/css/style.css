@@ -1,0 +1,165 @@
+body {
+  font-family: Montserrat, Arial, sans-serif !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+ul {
+  padding: 0 !important;
+}
+
+ul li {
+  list-style: none;
+}
+
+.bg-principal {
+  background-color: #a3a3a3;
+}
+.bg-cinza-claro {
+  background-color: #e3e6ec;
+}
+.text-principal {
+  color: #a3a3a3;
+}
+.text-cinza-claro {
+  color: #dfdfdf;
+}
+.text-cinza {
+  color: #8a8a8a;
+}
+
+.text-politica {
+  color: #068567 !important;
+}
+
+.text-educacao {
+  color: #0b4075 !important;
+}
+
+.text-saude {
+  color: #c88510 !important;
+}
+
+.border-noticia-politica {
+  border-left: 5px solid #068567 !important;
+}
+
+.border-noticia-educacao {
+  border-left: 5px solid #0b4075 !important;
+}
+
+.border-noticia-saude {
+  border-left: 5px solid #c88510 !important;
+}
+
+.botao-navbar:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.border-radius-principal {
+  border-radius: 15px !important;
+}
+.border-principal {
+  border: 2px solid #a3a3a3;
+}
+.shadow-principal {
+  box-shadow: 0px 0px 6px #0000002b;
+  border: 1px solid #70707000;
+  opacity: 1;
+}
+
+.cliente-logado {
+  border-left: 2px solid white;
+}
+
+.nome-cliente-logado {
+  font-size: 0.9rem;
+}
+
+.secao-principal {
+  margin-top: 56px;
+}
+
+.imagem-noticia-grande {
+  background-size: cover !important;
+  border-radius: 15px 0 0 15px;
+}
+
+.titulo-sub-secao {
+  border-bottom: 2px solid #a3a3a3;
+  font-weight: 600 !important;
+  padding: 0 0.4rem 0.2rem 0.4rem;
+}
+
+.texto-sub-secao {
+  font-weight: 600;
+}
+
+.imagem-noticia {
+  /* background-size: cover !important; */
+  border-radius: 10px 0 0 10px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.noticia {
+  border-right: 2px solid #a3a3a3;
+  border-top: 2px solid #a3a3a3;
+  border-bottom: 2px solid #a3a3a3;
+  min-height: 5rem;
+}
+
+.imagem-autor {
+  border-radius: 100%;
+}
+
+.corpo-noticia-grande {
+  border-radius: 0 15px 15px 0;
+}
+
+.titulo-noticia-grande {
+  transform: translate(0%, -220%);
+  text-shadow:#a3a3a3 1px -1px, #a3a3a3 -1px 1px, #a3a3a3 1px 1px, #a3a3a3 -1px -1px;
+}
+
+@media screen and (max-width: 1200px) {
+  .imagem-noticia-grande {
+    background-size: cover !important;
+    border-radius: 15px;
+  }
+  .corpo-noticia-grande {
+    background-color: rgba(255, 255, 255, 0);
+    border: none !important;
+    box-shadow: none;
+  }
+  .corpo-noticia-grande h1 {
+    border: none !important;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .titulo-noticia-grande {
+    transform: translate(0, -120%);
+  }
+  .imagem-noticia{
+    border-radius: 10px;
+  }
+
+  .border-noticia-politica {
+    border-left: 2px solid #a3a3a3 !important;
+    border: 5px solid #068567 !important;
+  }
+  
+  .border-noticia-educacao {
+    border-left: 2px solid #a3a3a3 !important;
+    border-top: 5px solid #0b4075 !important;
+  }
+  
+  .border-noticia-saude {
+    border-left: 2px solid #a3a3a3 !important;
+    border-top: 5px solid #c88510 !important;
+  }
+
+}
