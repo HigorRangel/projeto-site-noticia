@@ -70,9 +70,8 @@ ul li {
   opacity: 1;
 }
 
-.cliente-logado {
-  border-left: 2px solid white;
-}
+/* .cliente-logado {
+} */
 
 .nome-cliente-logado {
   font-size: 0.9rem;
