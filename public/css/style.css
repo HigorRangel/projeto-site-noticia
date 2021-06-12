@@ -4,6 +4,7 @@ body {
 
 a {
   text-decoration: none !important;
+  cursor: pointer;
 }
 
 ul {
@@ -15,13 +16,13 @@ ul li {
 }
 /* ===== Início - Estilos principais ===== */
 .bg-principal {
-  background-color: #a3a3a3;
+  background-color: #6b040f;
 }
 .bg-cinza-claro {
   background-color: #e3e6ec;
 }
 .text-principal {
-  color: #a3a3a3;
+  color: #6b040f;
 }
 .text-cinza-claro {
   color: #dfdfdf;
@@ -95,7 +96,7 @@ ul li {
 }
 
 .titulo-sub-secao {
-  border-bottom: 2px solid #a3a3a3;
+  border-bottom: 2px solid #6b040f;
   font-weight: 600 !important;
   padding: 0 0.4rem 0.2rem 0.4rem;
 }
@@ -112,9 +113,9 @@ ul li {
 }
 
 .noticia {
-  border-right: 2px solid #a3a3a3;
-  border-top: 2px solid #a3a3a3;
-  border-bottom: 2px solid #a3a3a3;
+  border-right: 2px solid #6b040f;
+  border-top: 2px solid #6b040f;
+  border-bottom: 2px solid #6b040f;
   min-height: 5rem;
 }
 
@@ -128,8 +129,8 @@ ul li {
 
 .titulo-noticia-grande {
   transform: translate(0%, -220%);
-  text-shadow: #a3a3a3 1px -1px, #a3a3a3 -1px 1px, #a3a3a3 1px 1px,
-    #a3a3a3 -1px -1px;
+  text-shadow: #6b040f 1px -1px, #6b040f -1px 1px, #6b040f 1px 1px,
+    #6b040f -1px -1px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -156,17 +157,17 @@ ul li {
   }
 
   .border-noticia-politica {
-    border-left: 2px solid #a3a3a3 !important;
+    border-left: 2px solid #6b040f !important;
     border-top: 5px solid #068567 !important;
   }
 
   .border-noticia-educacao {
-    border-left: 2px solid #a3a3a3 !important;
+    border-left: 2px solid #6b040f !important;
     border-top: 5px solid #0b4075 !important;
   }
 
   .border-noticia-saude {
-    border-left: 2px solid #a3a3a3 !important;
+    border-left: 2px solid #6b040f !important;
     border-top: 5px solid #c88510 !important;
   }
   .titulo-noticia-normal {
