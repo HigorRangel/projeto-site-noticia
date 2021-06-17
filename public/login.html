@@ -11,6 +11,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase.js"></script>
   <script type="text/javascript" src="js/env.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
 
@@ -18,6 +19,23 @@
 </head>
 
 <body>
+  <!-- Modal -->
+  <div class="modal fade" id="modalMsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloModal">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="mensagemModal">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
@@ -43,8 +61,14 @@
           <li class="nav-item me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="#">Fale Conosco</a>
           </li>
+          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+            <a class="nav-link text-light" href="lista-usuarios.html">Lista de Usuários</a>
+          </li>
+          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+            <a class="nav-link text-light" href="login.html">Login</a>
+          </li>
         </ul>
-        <div class="row justify-content-center align-items-center flex-row-reverse flex-xl-row">
+        <!-- <div class="row justify-content-center align-items-center flex-row-reverse flex-xl-row">
           <div class="col-xl-8 col-10 cliente-logado d-flex flex-column align-items-xl-end">
             <p class="fw-bold text-white nome-cliente-logado m-0">HIGOR RANGEL</p>
             <div>
@@ -54,12 +78,12 @@
           <div class="col-xl-4 col-2">
             <img class="border border-white border-2 rounded-circle" src="images/Foto.jpg" alt="Foto" width="50">
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </nav>
 
-  <section class="container mt-5 py-5 ">
+  <section class="container mt-5 py-5" style="min-height: calc(100vh - 104px);">
     <div class="row mt-4 justify-content-center">
       <div class="col-5 bg-light p-4 border rounded">
         <h1 class="h4 text-secondary mb-3">Login</h1>
@@ -72,14 +96,17 @@
             <label for="senhaLogin" class="form-label">Senha</label>
             <input type="password" class="form-control" id="senhaLogin" required>
           </div>
-          <div class="d-flex justify-content-end">
-            <a style="font-size: 0.9rem; ">Esqueceu a senha?</a>
+          <div class="d-flex justify-content-end mb-4">
+            <a style="font-size: 0.9rem; " onclick="esqueceuSenha();">Esqueceu a senha?</a>
           </div>
-          <button type="submit" class="btn btn-primary me-3">Enviar</button>
-          <a href="cadastro-usuario.html" class="btn btn-outline-primary">Registrar-se</a>
+          <button type="button" id="btnLogin" class="btn btn-primary me-3" onclick="login();">Login</button>
+          <a href="cadastro-usuario.html" id="btnRegistra" class="btn btn-outline-primary">Registrar-se</a>
+          <button type="button" id="btnExcluir" class="btn btn-danger ms-3 d-none" onclick="excluir();">Excluir</button>
+          <button type="button" id="btnSair" class="btn btn-outline-danger ms-3 d-none" onclick="logout();">Sair</button>
         </form>
       </div>
     </div>
+    <h1 class="text-center mt-4 text-success" id="msg-label" style="visibility: hidden;">Usuário logado!</h1>
   </section>
 
   <footer class=" text-center text-white bg-principal">

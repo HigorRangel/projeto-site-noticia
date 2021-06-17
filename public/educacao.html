@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <title>Site de noticia</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <title>Site de noticia</title>
 </head>
+
 <body>
- <nav class="navbar navbar-expand-xl navbar-light bg-educacao fixed-top py-lg-0">
+  <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,9 +37,15 @@
           <li class="nav-item me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="#">Fale Conosco</a>
           </li>
+          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+            <a class="nav-link text-light" href="lista-usuarios.html">Lista de Usuários</a>
+          </li>
+          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+            <a class="nav-link text-light" href="login.html">Login</a>
+          </li>
         </ul>
-        <div class="row justify-content-center align-items-center flex-row-reverse flex-xl-row">
-           <div class="col-xl-8 col-10 cliente-logado d-flex flex-column align-items-xl-end">
+        <!-- <div class="row justify-content-center align-items-center flex-row-reverse flex-xl-row">
+          <div class="col-xl-8 col-10 cliente-logado d-flex flex-column align-items-xl-end">
             <p class="fw-bold text-white nome-cliente-logado m-0">HIGOR RANGEL</p>
             <div>
               <a class="text-white text-decoration-none" style="font-size: 0.9em;" href="#">Sair</a>
@@ -46,8 +54,7 @@
           <div class="col-xl-4 col-2">
             <img class="border border-white border-2 rounded-circle" src="images/Foto.jpg" alt="Foto" width="50">
           </div>
-        </div>
-       
+        </div> -->
       </div>
     </div>
   </nav>
@@ -56,14 +63,14 @@
     <div class=" row flex-row-reverse flex-lg-row pt-4">
       <div class="col-12 col-xl-9">
         <h3 class="h3 text-center text-educacao mb-0" style="font-weight: 600;">Educação</h3>
-         <!-- Notícias menores -->
+        <!-- Notícias menores -->
         <div class=" py-3 px-3  border-radius-principal shadow-principal mt-2">
           <div class="row">
             <!-- Notícia pequena 1 -->
             <div class="col-xs-12 col-sm-6 col-md-12 ">
               <div class="col-12 px-2">
                 <div class="row noticia border-radius-principal border-noticia-educacao mt-3 ">
-                    <!-- imagem da notícia -->
+                  <!-- imagem da notícia -->
                   <div class="col-12 col-md-6 col-lg-4  p-0">
                     <a href="#">
                       <img class=" imagem-noticia" src="https://via.placeholder.com/380x210" alt="Noticia">
@@ -76,17 +83,17 @@
                         <a href="#" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">Loem ipsum dolor sit amet, consectetur adipiscing elit.</a>
                         <p class="text-cinza mt-2" style="font-size: 12px;">Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum. Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum.</p>
                       </div>
-                    
+
                       <div class="col-12 row align-content-center mb-1 mb-md-2 mb-lg-0">
                         <div class="col-lg-1 col-2 me-2 me-md-0">
                           <img src="https://via.placeholder.com/20x20" class=" imagem-autor border-principal" alt="" width="25">
-                        </div>  
+                        </div>
                         <div class="col-lg-8 col-6 p-0  d-flex align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">Higor Rangel</p>
-                        </div>  
+                        </div>
                         <div class="col-3 p-0  d-flex justify-content-end align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">10 min. atrás</p>
-                        </div>  
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -98,7 +105,7 @@
             <div class="col-xs-12 col-sm-6 col-md-12 ">
               <div class="col-12 px-2">
                 <div class="row noticia border-radius-principal border-noticia-educacao mt-3 ">
-                    <!-- imagem da notícia -->
+                  <!-- imagem da notícia -->
                   <div class="col-12 col-md-6 col-lg-4  p-0">
                     <a href="#">
                       <img class=" imagem-noticia" src="https://via.placeholder.com/380x210" alt="Noticia">
@@ -111,17 +118,17 @@
                         <a href="#" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">Loem ipsum dolor sit amet, consectetur adipiscing elit.</a>
                         <p class="text-cinza mt-2" style="font-size: 12px;">Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum. Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum.</p>
                       </div>
-                    
+
                       <div class="col-12 row align-content-center mb-1 mb-md-2 mb-lg-0">
                         <div class="col-lg-1 col-2 me-2 me-md-0">
                           <img src="https://via.placeholder.com/20x20" class=" imagem-autor border-principal" alt="" width="25">
-                        </div>  
+                        </div>
                         <div class="col-lg-8 col-6 p-0  d-flex align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">Higor Rangel</p>
-                        </div>  
+                        </div>
                         <div class="col-3 p-0  d-flex justify-content-end align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">10 min. atrás</p>
-                        </div>  
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -133,7 +140,7 @@
             <div class="col-xs-12 col-sm-6 col-md-12 ">
               <div class="col-12 px-2">
                 <div class="row noticia border-radius-principal border-noticia-educacao mt-3 ">
-                    <!-- imagem da notícia -->
+                  <!-- imagem da notícia -->
                   <div class="col-12 col-md-6 col-lg-4  p-0">
                     <a href="#">
                       <img class=" imagem-noticia" src="https://via.placeholder.com/380x210" alt="Noticia">
@@ -146,17 +153,17 @@
                         <a href="#" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">Loem ipsum dolor sit amet, consectetur adipiscing elit.</a>
                         <p class="text-cinza mt-2" style="font-size: 12px;">Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum. Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum.</p>
                       </div>
-                    
+
                       <div class="col-12 row align-content-center mb-1 mb-md-2 mb-lg-0">
                         <div class="col-lg-1 col-2 me-2 me-md-0">
                           <img src="https://via.placeholder.com/20x20" class=" imagem-autor border-principal" alt="" width="25">
-                        </div>  
+                        </div>
                         <div class="col-lg-8 col-6 p-0  d-flex align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">Higor Rangel</p>
-                        </div>  
+                        </div>
                         <div class="col-3 p-0  d-flex justify-content-end align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">10 min. atrás</p>
-                        </div>  
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -168,7 +175,7 @@
             <div class="col-xs-12 col-sm-6 col-md-12 ">
               <div class="col-12 px-2">
                 <div class="row noticia border-radius-principal border-noticia-educacao mt-3 ">
-                    <!-- imagem da notícia -->
+                  <!-- imagem da notícia -->
                   <div class="col-12 col-md-6 col-lg-4  p-0">
                     <a href="#">
                       <img class=" imagem-noticia" src="https://via.placeholder.com/380x210" alt="Noticia">
@@ -181,17 +188,17 @@
                         <a href="#" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">Loem ipsum dolor sit amet, consectetur adipiscing elit.</a>
                         <p class="text-cinza mt-2" style="font-size: 12px;">Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum. Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum.</p>
                       </div>
-                    
+
                       <div class="col-12 row align-content-center mb-1 mb-md-2 mb-lg-0">
                         <div class="col-lg-1 col-2 me-2 me-md-0">
                           <img src="https://via.placeholder.com/20x20" class=" imagem-autor border-principal" alt="" width="25">
-                        </div>  
+                        </div>
                         <div class="col-lg-8 col-6 p-0  d-flex align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">Higor Rangel</p>
-                        </div>  
+                        </div>
                         <div class="col-3 p-0  d-flex justify-content-end align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">10 min. atrás</p>
-                        </div>  
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -203,7 +210,7 @@
             <div class="col-xs-12 col-sm-6 col-md-12 ">
               <div class="col-12 px-2">
                 <div class="row noticia border-radius-principal border-noticia-educacao mt-3 ">
-                    <!-- imagem da notícia -->
+                  <!-- imagem da notícia -->
                   <div class="col-12 col-md-6 col-lg-4  p-0">
                     <a href="#">
                       <img class=" imagem-noticia" src="https://via.placeholder.com/380x210" alt="Noticia">
@@ -216,17 +223,17 @@
                         <a href="#" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">Loem ipsum dolor sit amet, consectetur adipiscing elit.</a>
                         <p class="text-cinza mt-2" style="font-size: 12px;">Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum. Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum.</p>
                       </div>
-                    
+
                       <div class="col-12 row align-content-center mb-1 mb-md-2 mb-lg-0">
                         <div class="col-lg-1 col-2 me-2 me-md-0">
                           <img src="https://via.placeholder.com/20x20" class=" imagem-autor border-principal" alt="" width="25">
-                        </div>  
+                        </div>
                         <div class="col-lg-8 col-6 p-0  d-flex align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">Higor Rangel</p>
-                        </div>  
+                        </div>
                         <div class="col-3 p-0  d-flex justify-content-end align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">10 min. atrás</p>
-                        </div>  
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -238,7 +245,7 @@
             <div class="col-xs-12 col-sm-6 col-md-12 ">
               <div class="col-12 px-2">
                 <div class="row noticia border-radius-principal border-noticia-educacao mt-3 ">
-                    <!-- imagem da notícia -->
+                  <!-- imagem da notícia -->
                   <div class="col-12 col-md-6 col-lg-4  p-0">
                     <a href="#">
                       <img class=" imagem-noticia" src="https://via.placeholder.com/380x210" alt="Noticia">
@@ -251,17 +258,17 @@
                         <a href="#" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">Loem ipsum dolor sit amet, consectetur adipiscing elit.</a>
                         <p class="text-cinza mt-2" style="font-size: 12px;">Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum. Mauris id tincidunt justo, in auctor mauris. Nullam in nibh lectus. Proin fringilla ligula nec pretium rutrum.</p>
                       </div>
-                    
+
                       <div class="col-12 row align-content-center mb-1 mb-md-2 mb-lg-0">
                         <div class="col-lg-1 col-2 me-2 me-md-0">
                           <img src="https://via.placeholder.com/20x20" class=" imagem-autor border-principal" alt="" width="25">
-                        </div>  
+                        </div>
                         <div class="col-lg-8 col-6 p-0  d-flex align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">Higor Rangel</p>
-                        </div>  
+                        </div>
                         <div class="col-3 p-0  d-flex justify-content-end align-items-center">
                           <p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">10 min. atrás</p>
-                        </div>  
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -269,9 +276,9 @@
               </div>
             </div>
 
-          </div>          
+          </div>
         </div>
-        
+
       </div>
       <!-- Coronavirus -->
       <div class="col-12 col-lg-4 col-xl-3 mt-4 pt-3 ">
@@ -292,7 +299,7 @@
           <fieldset class="py-3 border-bottom border-2 form-group d-flex align-items-center justify-content-center mt-3">
             <input type="text" class="text-center w-100 py-1 pe-5 ps-3 border-radius-principal border-principal campo-busca" id="campo-busca" placeholder="Digite o título para buscar" style="float: left; font-size: 12px;">
             <a href="#"><i class="fas fa-search text-principal" style="font-size: 18px; margin-left: -35px;"></i></a>
-          </fieldset>       
+          </fieldset>
           <div>
             <h1 class="h5 text-center text-principal mt-3"><span class="titulo-sub-secao">Categorias</span></h1>
             <ul class="text-center">
@@ -300,49 +307,49 @@
               <li class="pb-3"><a class="text-educacao" style="font-weight: 600;" href="educacao.html">Educação</a></li>
               <li><a href="saude.html" class="text-saude" style="font-weight: 600;">Saúde</a></li>
             </ul>
-          </div> 
-        </div>
-      </div>
-      
-   </div>
-     
-   
-  </section>
-
-<footer class=" text-center text-white bg-educacao">
-  <div class="container p-4">
-    <section class="">
-      <div class="row justify-content-center">
-        <div class="col-6 mb-4 mb-md-0 d-flex d-md-flex d-none align-items-center justify-content-center">
-          <div class="border rounded-circle d-flex align-items-center justify-content-center" style="width: 10em; height: 10em;">
-            <i class="fas fa-newspaper" style="font-size: 64px;"></i>
           </div>
         </div>
-
-        <div class="col-12 col-md-6 mb-4 mb-md-0  justify-content-center align-items-center">
-          <h5 class="text-uppercase">Autores</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li class=" mt-4">
-              <a href="#!" class="text-white">Higor Rangel</a>
-            </li>
-            <li class=" mt-4">
-              <a href="#!" class="text-white">Pedro Henrique Pereira Soares</a>
-            </li>
-
-          </ul>
-        </div>
       </div>
-    </section>
-  </div>
 
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-    © 2021 Copyright
-  </div>
+    </div>
 
-</footer>
-<!-- Footer -->
-<!-- 
+
+  </section>
+
+  <footer class=" text-center text-white bg-educacao">
+    <div class="container p-4">
+      <section class="">
+        <div class="row justify-content-center">
+          <div class="col-6 mb-4 mb-md-0 d-flex d-md-flex d-none align-items-center justify-content-center">
+            <div class="border rounded-circle d-flex align-items-center justify-content-center" style="width: 10em; height: 10em;">
+              <i class="fas fa-newspaper" style="font-size: 64px;"></i>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 mb-4 mb-md-0  justify-content-center align-items-center">
+            <h5 class="text-uppercase">Autores</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li class=" mt-4">
+                <a href="#!" class="text-white">Higor Rangel</a>
+              </li>
+              <li class=" mt-4">
+                <a href="#!" class="text-white">Pedro Henrique Pereira Soares</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2021 Copyright
+    </div>
+
+  </footer>
+  <!-- Footer -->
+  <!-- 
   <section class="container">
     <div class="row pt-4">
       <div class="col-9">
@@ -360,6 +367,7 @@
     </div>
   </section>
    -->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
+
 </html>

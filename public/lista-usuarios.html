@@ -18,10 +18,24 @@
   <title>Site de noticia</title>
 </head>
 
-<body>
-
-
-
+<body onload="carregaListaUsuarios();">
+  <!-- Modal -->
+  <div class="modal fade" id="modalMsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloModal">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="mensagemModal">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
@@ -69,107 +83,30 @@
     </div>
   </nav>
 
-  <section class="container mt-5 py-5 ">
-    <div class="row mt-4 justify-content-center">
-      <div class="col-12 col-lg-8  p-4 border rounded bg-light">
-        <h1 class="h4 text-secondary">Cadastro de Usuário</h1>
-        <form id="formNovoUsuario">
-          <div>
-            <label for="tipoUsuarioRegistro" class="form-label mb-1">Tipo de Usuário</label>
-            <select class="form-select mb-2" aria-label="Cadastro de Notícia" id="tipoUsuarioRegistro">
-              <option selected value=0>Selecione o tipo do usuário</option>
-              <option value=1>Administrador</option>
-              <option value=2>Leitor</option>
-            </select>
-          </div>
+  <section class="container-fluid mt-5 pt-5 d-flex flex-column align-items-center" style="min-height: calc(100vh - 104px);">
+    <h1 class="h3 text-center">Lista de usuários</h1>
+    <div class="col-10 justify-content-center align-items-center">
+      <table id="tabelaUsuarios" class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width: 20%;">ID do Usuário</th>
+            <th>Nome Completo</th>
+            <th>E-mail</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
 
-          <div class="mb-2">
-            <label for="emailUsuarioRegistro" class="form-label mb-1">E-mail</label>
-            <input type="email" class="form-control" id="emailUsuarioRegistro" maxlength="100" required>
-          </div>
-          <div class="mb-3 row">
-            <div class="col-md-3 col-12">
-              <label for="primeiroNomeRegistro" class="form-label mb-1">Primeiro Nome</label>
-              <input type="text" maxlength="15" class="form-control" id="primeiroNomeRegistro" required>
-            </div>
-            <div class="col-md-6 col-12">
-              <label for="nomesMeioRegistro" class="form-label mb-1">Nome(s) do meio</label>
-              <input type="text" maxlength="35" class="form-control" id="nomesMeioRegistro">
-            </div>
-            <div class="col-md-3 col-12">
-              <label for="ultimoNomeRegistro" class="form-label mb-1">Último Nome</label>
-              <input type="text" maxlength="15" class="form-control" id="ultimoNomeRegistro" required>
-            </div>
-          </div>
-
-          <div class="mb-3 row">
-            <div class="col-6">
-              <label for="senhaRegistro" class="form-label mb-1">Senha</label>
-              <input type="password" maxlength="8" class="form-control" id="senhaRegistro" required>
-            </div>
-            <div class="col-6">
-              <label for="confirmarSenhaRegistro" class="form-label mb-1">Confirme a Senha</label>
-              <input type="password" maxlength="8" sd class="form-control" id="confirmarSenhaRegistro" required>
-            </div>
-          </div>
-
-          <button type="button" class="btn btn-primary bg-principal" onclick="cadastraUsuario(event);">Enviar</button>
-          <button type="button" class="btn btn-outline-primary bg-principal" onclick="limpaCampos(event);">Limpar</button>
-
-        </form>
-      </div>
+      </table>
     </div>
   </section>
 
   <footer class=" text-center text-white bg-principal">
-    <div class="container p-4">
-      <section class="">
-        <div class="row justify-content-center">
-          <div class="col-6 mb-4 mb-md-0 d-flex d-md-flex d-none align-items-center justify-content-center">
-            <div class="border rounded-circle d-flex align-items-center justify-content-center" style="width: 10em; height: 10em;">
-              <i class="fas fa-newspaper" style="font-size: 64px;"></i>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 mb-4 mb-md-0  justify-content-center align-items-center">
-            <h5 class="text-uppercase">Autores</h5>
-
-            <ul class="list-unstyled mb-0">
-              <li class=" mt-4">
-                <a href="#!" class="text-white">Higor Rangel</a>
-              </li>
-              <li class=" mt-4">
-                <a href="#!" class="text-white">Pedro Henrique Pereira Soares</a>
-              </li>
-
-            </ul>
-          </div>
-        </div>
-      </section>
-    </div>
-
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
       © 2021 Copyright
     </div>
   </footer>
-
-  <!-- Modal -->
-  <div class="modal fade" id="modalMsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="tituloModal">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="mensagemModal">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- Footer -->
   <!-- 
   <section class="container">
