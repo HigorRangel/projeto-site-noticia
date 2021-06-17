@@ -61,12 +61,11 @@
    <div class="row mt-4 justify-content-center">
     <div class="col-6">
       <h1 class="h4 text-secondary">Cadastro de Notícia</h1>
-      <form>
+      <form id="formNoticia">
         <div>
           <label for="categoria" class="form-label">Categoria</label>
-          <select class="form-select mb-3" aria-label="Cadastro de Notícia">
-            <option selected>Selecione o tipo da notícia</option>
-            <option value="1">Política</option>
+          <select class="form-select mb-3" aria-label="Cadastro de Notícia" id="categoriaForm">
+            <option value="1" selected>Política</option>
             <option value="2">Saúde</option>
             <option value="3">Educação</option>
           </select>
@@ -89,12 +88,30 @@
           <textarea class="form-control" id="corpoNoticiaForm" rows="8" maxlength="1000" required></textarea>
         </div>
         
-        <button type="submit" class="btn btn-primary bg-principal">Enviar</button>
+        <button type="submit" class="btn btn-primary bg-principal" onclick="cadastraNoticia(event)" >Enviar</button>
       </form>
     </div>
    </div>
   </section>
 
+  <!-- Modal -->
+  <div class="modal fade" id="modalMsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloModal">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="mensagemModal">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <footer class=" text-center text-white bg-principal">
     <div class="container p-4">
       <section class="">

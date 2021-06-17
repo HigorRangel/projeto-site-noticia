@@ -33,15 +33,33 @@ function cadastraUsuario(event) {
   }
 }
 
+function cadastraNoticia(event){
+  let formNoticia = document.getElementById('formNoticia');
+
+  let categoria = document.getElementById('categoriaForm').value;
+  let titulo = document.getElementById('tituloForm').value;
+  let autor = document.getElementById('autorForm').value;
+  let olho = document.getElementById('olhoNoticiaForm').value;
+  let corpo = document.getElementById('corpoNoticiaForm').value;
+
+  criaNoticia(
+    categoria,
+    titulo,
+    autor,
+    olho,
+    corpo,
+    );
+}
+
 function insere(nomeTabela, objetoInsercao) {
   db.collection(nomeTabela)
     .add(objetoInsercao)
     .then(function (docRef) {})
     .catch(function (error) {
-      mostraModal(
-        'Não foi possível inserir o registro.',
-        'Erro: ' + error.code,
-      );
+      //mostraModal(
+        //'Não foi possível inserir o registro.',
+        //'Erro: ' + error.code,
+      //);
     });
 }
 
@@ -83,7 +101,27 @@ function removeRegistro(nomeTabela, atributo) {
       mostraModal('Falha', 'O registro não foi removido. Erro: ' + error);
     });
 }
-
+function criaNoticia(
+  categoria,
+  titulo,
+  autor,
+  olho,
+  corpo,
+){
+  insere('noticia',{
+    categoria: categoria,
+    titulo: titulo,
+    autor: autor,
+    olho: olho,
+    corpo: corpo,
+    data: firebase.firestore.FieldValue.serverTimestamp(),
+    curtidas: 0,
+  });
+  mostraModal(
+    'Notícia adicionada',
+    'A notícia foi adicionada com sucesso.',
+  );
+}
 function criaUsuario(
   email,
   senha,
