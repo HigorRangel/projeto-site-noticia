@@ -33,22 +33,67 @@ function cadastraUsuario(event) {
   }
 }
 
-function cadastraNoticia(event){
-  let formNoticia = document.getElementById('formNoticia');
+function cadastraNoticia(event,email,senha){
+  
+  let image = document.getElementById("imagemForm").files[0]
 
-  let categoria = document.getElementById('categoriaForm').value;
-  let titulo = document.getElementById('tituloForm').value;
-  let autor = document.getElementById('autorForm').value;
-  let olho = document.getElementById('olhoNoticiaForm').value;
-  let corpo = document.getElementById('corpoNoticiaForm').value;
+  let storageRef= firebase.storage().ref('noticia/'+ image.name)
 
-  criaNoticia(
-    categoria,
-    titulo,
-    autor,
-    olho,
-    corpo,
-    );
+  let uploadTask = storageRef.put(image)
+
+  uploadTask.on('state_changed', function (snapshot){
+
+    var progresso =(snapshot.bytesTransferred/snapshot.totalBytes)*100
+
+    console.log("O Upload está "+ progresso +" completo")
+
+  },function(error){
+    console.log(error.message)
+  },function(){
+    uploadTask.snapshot.ref.getDownloadURL().then(function(URL){
+      let imagemUrl = URL
+      let categoria = document.getElementById('categoriaForm').value;
+      let titulo = document.getElementById('tituloForm').value;
+      let autor = document.getElementById('autorForm').value;
+      let olho = document.getElementById('olhoNoticiaForm').value;
+      let corpo = document.getElementById('corpoNoticiaForm').value;
+      
+      criaNoticia(
+        categoria,
+        titulo,
+        autor,
+        olho,
+        corpo,
+        imagemUrl,
+        );
+    })
+  })
+  
+}
+
+
+function salvarImagemNoticia(){
+  let image = document.getElementById("imagemForm").files[0]
+
+  let storageRef= firebase.storage().ref('noticia/'+ image.name)
+
+  let uploadTask = storageRef.put(image)
+
+  uploadTask.on('state_changed', function (snapshot){
+
+    var progresso =(snapshot.bytesTransferred/snapshot.totalBytes)*100
+
+    console.log("O Upload está "+ progresso +" completo")
+
+  },function(error){
+    console.log(error.message)
+  },function(){
+    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
+      url = downloadURL;
+      console.log(downloadURL)
+    })
+  })
+  return url;
 }
 
 function insere(nomeTabela, objetoInsercao) {
@@ -56,10 +101,10 @@ function insere(nomeTabela, objetoInsercao) {
     .add(objetoInsercao)
     .then(function (docRef) {})
     .catch(function (error) {
-      //mostraModal(
-        //'Não foi possível inserir o registro.',
-        //'Erro: ' + error.code,
-      //);
+      mostraModal(
+        'Não foi possível inserir o registro.',
+        'Erro: ' + error.code,
+      );
     });
 }
 
@@ -107,6 +152,7 @@ function criaNoticia(
   autor,
   olho,
   corpo,
+  imagemUrl
 ){
   insere('noticia',{
     categoria: categoria,
@@ -116,6 +162,7 @@ function criaNoticia(
     corpo: corpo,
     data: firebase.firestore.FieldValue.serverTimestamp(),
     curtidas: 0,
+    imagemUrl: imagemUrl,
   });
   mostraModal(
     'Notícia adicionada',

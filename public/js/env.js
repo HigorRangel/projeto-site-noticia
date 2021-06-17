@@ -1,3 +1,4 @@
+
 let firebaseConfig = {
   apiKey: 'AIzaSyAkCbxVqaWE-1Hwc8xGj5oKdTKgFugFlo4',
   authDomain: 'projeto-site-noticia.firebaseapp.com',
@@ -15,6 +16,8 @@ firebase.analytics();
 let db = firebase.firestore();
 
 let auth = firebase.auth();
+
+let storage = firebase.storage();
 
 // firebase.auth().signInWithEmailAndPassword('higor.rangel@aluno.ifsp.edu.br', '123mudar').catch(function(error) {
 
