@@ -1,3 +1,5 @@
+buscaTodosRegistros('noticia', noticiaComum);
+
 function limpaCampos(event) {
   tipoUsuario = document.getElementById('tipoUsuarioRegistro').value = 0;
   email = document.getElementById('emailUsuarioRegistro').value = '';
@@ -46,19 +48,18 @@ function insere(nomeTabela, objetoInsercao) {
 }
 
 function buscaTodosRegistros(nomeTabela, callback) {
-  let resultados = [];
   db.collection(nomeTabela)
     .get()
     .then((querySnapshot) => {
+      let resultados = new Array(0);
       querySnapshot.forEach((doc) => {
-        callback(doc);
+        resultados.push(doc.data());
       });
+      callback(resultados);
     });
-  return resultados;
 }
 
 function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
-  let resultados = [];
   db.collection(nomeTabela)
     .where(...atributos)
     .get()
@@ -68,7 +69,6 @@ function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
         callback(doc);
       });
     });
-
   return resultados;
 }
 
