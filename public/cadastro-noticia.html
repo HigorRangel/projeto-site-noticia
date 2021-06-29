@@ -10,6 +10,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase.js"></script>
     <script type="text/javascript" src="js/env.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
    
@@ -61,12 +63,11 @@
    <div class="row mt-4 justify-content-center">
     <div class="col-6">
       <h1 class="h4 text-secondary">Cadastro de Notícia</h1>
-      <form>
+      <form id="formNoticia">
         <div>
           <label for="categoria" class="form-label">Categoria</label>
-          <select class="form-select mb-3" aria-label="Cadastro de Notícia">
-            <option selected>Selecione o tipo da notícia</option>
-            <option value="1">Política</option>
+          <select class="form-select mb-3" aria-label="Cadastro de Notícia" id="categoriaForm">
+            <option value="1" selected>Política</option>
             <option value="2">Saúde</option>
             <option value="3">Educação</option>
           </select>
@@ -81,6 +82,10 @@
           <input type="text" class="form-control" id="autorForm" required>
         </div>
         <div class="mb-3">
+          <label for="autorForm" class="form-label" >Imagem</label>
+          <input type="file" class="form-control" accept="image/*" id="imagemForm">
+        </div>
+        <div class="mb-3">
           <label for="olhoNoticiaForm" class="form-label">Pequena Descrição (Olho da notícia)</label>
           <textarea class="form-control" id="olhoNoticiaForm" rows="3" maxlength="200" required></textarea>
         </div>
@@ -89,12 +94,30 @@
           <textarea class="form-control" id="corpoNoticiaForm" rows="8" maxlength="1000" required></textarea>
         </div>
         
-        <button type="submit" class="btn btn-primary bg-principal">Enviar</button>
+        <button type="submit" class="btn btn-primary bg-principal" onclick="cadastraNoticia(event)" >Enviar</button>
       </form>
     </div>
    </div>
   </section>
 
+  <!-- Modal -->
+  <div class="modal fade" id="modalMsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloModal">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="mensagemModal">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <footer class=" text-center text-white bg-principal">
     <div class="container p-4">
       <section class="">
