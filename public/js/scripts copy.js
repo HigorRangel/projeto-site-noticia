@@ -81,26 +81,13 @@ function removeRegistro(nomeTabela, atributo) {
     });
 }
 
-function criaUsuario(
-  email,
-  senha,
-  tipoUsuario,
-  primeiroNome,
-  nomesDoMeio,
-  ultimoNome,
-) {
+function criaUsuario(email, senha, nomeUsuario) {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, senha)
     .then((user) => {
-      insere('usuario', {
-        uid: user.user.uid,
-        tipo: tipoUsuario,
-        email: email,
-        primeiro_nome: primeiroNome,
-        nomes_meio: nomesDoMeio,
-        ultimo_nome: ultimoNome,
-        senha: senha,
+      user.user.updateProfile({
+        displayName: nomeUsuario,
       });
       mostraModal(
         'Usuário criado',

@@ -69,37 +69,20 @@
     </div>
   </nav>
 
+
   <section class="container mt-5 py-5 ">
     <div class="row mt-4 justify-content-center">
       <div class="col-12 col-lg-8  p-4 border rounded bg-light">
         <h1 class="h4 text-secondary">Cadastro de Usuário</h1>
         <form id="formNovoUsuario">
-          <div>
-            <label for="tipoUsuarioRegistro" class="form-label mb-1">Tipo de Usuário</label>
-            <select class="form-select mb-2" aria-label="Cadastro de Notícia" id="tipoUsuarioRegistro">
-              <option selected value=0>Selecione o tipo do usuário</option>
-              <option value=1>Administrador</option>
-              <option value=2>Leitor</option>
-            </select>
-          </div>
 
           <div class="mb-2">
             <label for="emailUsuarioRegistro" class="form-label mb-1">E-mail</label>
             <input type="email" class="form-control" id="emailUsuarioRegistro" maxlength="100" required>
           </div>
-          <div class="mb-3 row">
-            <div class="col-md-3 col-12">
-              <label for="primeiroNomeRegistro" class="form-label mb-1">Primeiro Nome</label>
-              <input type="text" maxlength="15" class="form-control" id="primeiroNomeRegistro" required>
-            </div>
-            <div class="col-md-6 col-12">
-              <label for="nomesMeioRegistro" class="form-label mb-1">Nome(s) do meio</label>
-              <input type="text" maxlength="35" class="form-control" id="nomesMeioRegistro">
-            </div>
-            <div class="col-md-3 col-12">
-              <label for="ultimoNomeRegistro" class="form-label mb-1">Último Nome</label>
-              <input type="text" maxlength="15" class="form-control" id="ultimoNomeRegistro" required>
-            </div>
+          <div class="col mb-2">
+            <label for="campoNomeCadastro" class="form-label mb-1">Nome</label>
+            <input type="text" maxlength="55" class="form-control" id="campoNomeCadastro" required>
           </div>
 
           <div class="mb-3 row">
@@ -113,8 +96,8 @@
             </div>
           </div>
 
-          <button type="button" class="btn btn-primary bg-principal" onclick="cadastraUsuario(event);">Enviar</button>
-          <button type="button" class="btn btn-outline-primary bg-principal" onclick="limpaCampos(event);">Limpar</button>
+          <button type="button" class="btn btn-primary bg-primary" onclick="cadastraUsuario(event);">Enviar</button>
+          <button type="button" class="btn btn-outline-primary bg-primary" onclick="limpaCampos(event);">Limpar</button>
 
         </form>
       </div>

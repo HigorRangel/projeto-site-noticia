@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase.js"></script>
-    <script type="text/javascript" src="js/env.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
-   
-    <title>Site de noticia</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase.js"></script>
+  <script type="text/javascript" src="js/env.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+
+  <title>Site de noticia</title>
 </head>
+
 <body>
- <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
+  <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +47,7 @@
           </li>
         </ul>
         <div class="row justify-content-center align-items-center flex-row-reverse flex-xl-row">
-           <div class="col-xl-8 col-10 cliente-logado d-flex flex-column align-items-xl-end">
+          <div class="col-xl-8 col-10 cliente-logado d-flex flex-column align-items-xl-end">
             <p class="fw-bold text-white nome-cliente-logado m-0">HIGOR RANGEL</p>
             <div>
               <a class="text-white text-decoration-none" style="font-size: 0.9em;" href="#">Sair</a>
@@ -60,44 +62,44 @@
   </nav>
 
   <section class="container mt-5 py-5 ">
-   <div class="row mt-4 justify-content-center">
-    <div class="col-6">
-      <h1 class="h4 text-secondary">Cadastro de Notícia</h1>
-      <form id="formNoticia">
-        <div>
-          <label for="categoria" class="form-label">Categoria</label>
-          <select class="form-select mb-3" aria-label="Cadastro de Notícia" id="categoriaForm">
-            <option value="1" selected>Política</option>
-            <option value="2">Saúde</option>
-            <option value="3">Educação</option>
-          </select>
-        </div>
-        
-        <div class="mb-3">
-          <label for="tituloForm" class="form-label">Título da Notícia</label>
-          <input type="text" class="form-control" id="tituloForm" maxlength="50" required>
-        </div>
-        <div class="mb-3">
-          <label for="autorForm" class="form-label">Autor</label>
-          <input type="text" class="form-control" id="autorForm" required>
-        </div>
-        <div class="mb-3">
-          <label for="autorForm" class="form-label" >Imagem</label>
-          <input type="file" class="form-control" accept="image/*" id="imagemForm">
-        </div>
-        <div class="mb-3">
-          <label for="olhoNoticiaForm" class="form-label">Pequena Descrição (Olho da notícia)</label>
-          <textarea class="form-control" id="olhoNoticiaForm" rows="3" maxlength="200" required></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="corpoNoticiaForm" class="form-label">Descrição</label>
-          <textarea class="form-control" id="corpoNoticiaForm" rows="8" maxlength="1000" required></textarea>
-        </div>
-        
-        <button type="submit" class="btn btn-primary bg-principal" onclick="cadastraNoticia(event)" >Enviar</button>
-      </form>
+    <div class="row mt-4 justify-content-center">
+      <div class="col-6">
+        <h1 class="h4 text-secondary">Cadastro de Notícia</h1>
+        <form id="formNoticia">
+          <div>
+            <label for="categoria" class="form-label">Categoria</label>
+            <select class="form-select mb-3" aria-label="Cadastro de Notícia" id="categoriaForm">
+              <option value="1" selected>Política</option>
+              <option value="2">Saúde</option>
+              <option value="3">Educação</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="tituloForm" class="form-label">Título da Notícia</label>
+            <input type="text" class="form-control" id="tituloForm" maxlength="50" required>
+          </div>
+          <div class="mb-3">
+            <label for="autorForm" class="form-label">Autor</label>
+            <input type="text" class="form-control" id="autorForm" required>
+          </div>
+          <div class="mb-3">
+            <label for="autorForm" class="form-label">Imagem</label>
+            <input type="file" class="form-control" accept="image/*" id="imagemForm">
+          </div>
+          <div class="mb-3">
+            <label for="olhoNoticiaForm" class="form-label">Pequena Descrição (Olho da notícia)</label>
+            <textarea class="form-control" id="olhoNoticiaForm" rows="3" maxlength="200" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="corpoNoticiaForm" class="form-label">Descrição</label>
+            <textarea class="form-control" id="corpoNoticiaForm" rows="8" maxlength="1000" required></textarea>
+          </div>
+
+          <button type="button" class="btn btn-primary bg-principal" onclick="cadastraNoticia(event)">Enviar</button>
+        </form>
+      </div>
     </div>
-   </div>
   </section>
 
   <!-- Modal -->
@@ -117,7 +119,7 @@
       </div>
     </div>
   </div>
-  
+
   <footer class=" text-center text-white bg-principal">
     <div class="container p-4">
       <section class="">
@@ -148,9 +150,9 @@
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
       © 2021 Copyright
     </div>
-</footer>
-<!-- Footer -->
-<!-- 
+  </footer>
+  <!-- Footer -->
+  <!-- 
   <section class="container">
     <div class="row pt-4">
       <div class="col-9">
@@ -168,6 +170,7 @@
     </div>
   </section>
    -->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
+
 </html>

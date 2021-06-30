@@ -1,4 +1,5 @@
 function noticiaComum(listaNoticias) {
+  listaNoticias = embaralhaNoticias(listaNoticias);
   var k = '';
 
   listaNoticias.forEach((noticia) => {
@@ -21,8 +22,8 @@ function noticiaComum(listaNoticias) {
       noticia.titulo +
       '</a>';
     k +=
-      '<p class="text-cinza mt-2" style="font-size: 12px;">' +
-      noticia.corpo +
+      '<p class="text-cinza mt-2" style="text-align: justify ; font-size: 12px;">' +
+      noticia.olho +
       '</p>';
     k += '</div>';
 
@@ -51,4 +52,23 @@ function noticiaComum(listaNoticias) {
     k += '</div>';
   });
   document.getElementById('areaNoticiasInicio').innerHTML = k;
+}
+
+function embaralhaNoticias(lista) {
+  var elementos = lista.length,
+    t,
+    i;
+
+  // While there remain elements to shuffle…
+  while (elementos) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * elementos--);
+
+    // And swap it with the current element.
+    t = lista[elementos];
+    lista[elementos] = lista[i];
+    lista[i] = t;
+  }
+
+  return lista;
 }

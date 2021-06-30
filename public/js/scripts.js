@@ -16,85 +16,71 @@ function cadastraUsuario(event) {
   let resultValidacao = formNovoUsuario.reportValidity();
 
   if (resultValidacao) {
-    let tipoUsuario = document.getElementById('tipoUsuarioRegistro').value;
     let email = document.getElementById('emailUsuarioRegistro').value;
-    let primeiroNome = document.getElementById('primeiroNomeRegistro').value;
-    let nomesDoMeio = document.getElementById('nomesMeioRegistro').value;
-    let ultimoNome = document.getElementById('ultimoNomeRegistro').value;
+    let nomeUsuario = document.getElementById('campoNomeCadastro').value;
     let senha = document.getElementById('senhaRegistro').value;
     let confirmaSenha = document.getElementById('confirmarSenhaRegistro').value;
 
-    criaUsuario(
-      email,
-      senha,
-      tipoUsuario,
-      primeiroNome,
-      nomesDoMeio,
-      ultimoNome,
-    );
+    criaUsuario(email, senha, nomeUsuario);
   }
 }
 
-function cadastraNoticia(event,email,senha){
-  
-  let image = document.getElementById("imagemForm").files[0]
+function cadastraNoticia(event, email, senha) {
+  let image = document.getElementById('imagemForm').files[0];
 
-  let storageRef= firebase.storage().ref('noticia/'+ image.name)
+  let storageRef = firebase.storage().ref('noticia/' + image.name);
 
-  let uploadTask = storageRef.put(image)
+  let uploadTask = storageRef.put(image);
 
-  uploadTask.on('state_changed', function (snapshot){
+  uploadTask.on(
+    'state_changed',
+    function (snapshot) {
+      var progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-    var progresso =(snapshot.bytesTransferred/snapshot.totalBytes)*100
+      console.log('O Upload está ' + progresso + ' completo');
+    },
+    function (error) {
+      console.log(error.message);
+    },
+    function () {
+      uploadTask.snapshot.ref.getDownloadURL().then(function (URL) {
+        let imagemUrl = URL;
+        let categoria = document.getElementById('categoriaForm').value;
+        let titulo = document.getElementById('tituloForm').value;
+        let autor = document.getElementById('autorForm').value;
+        let olho = document.getElementById('olhoNoticiaForm').value;
+        let corpo = document.getElementById('corpoNoticiaForm').value;
 
-    console.log("O Upload está "+ progresso +" completo")
-
-  },function(error){
-    console.log(error.message)
-  },function(){
-    uploadTask.snapshot.ref.getDownloadURL().then(function(URL){
-      let imagemUrl = URL
-      let categoria = document.getElementById('categoriaForm').value;
-      let titulo = document.getElementById('tituloForm').value;
-      let autor = document.getElementById('autorForm').value;
-      let olho = document.getElementById('olhoNoticiaForm').value;
-      let corpo = document.getElementById('corpoNoticiaForm').value;
-      
-      criaNoticia(
-        categoria,
-        titulo,
-        autor,
-        olho,
-        corpo,
-        imagemUrl,
-        );
-    })
-  })
-  
+        criaNoticia(categoria, titulo, autor, olho, corpo, imagemUrl);
+      });
+    },
+  );
 }
 
+function salvarImagemNoticia() {
+  let image = document.getElementById('imagemForm').files[0];
 
-function salvarImagemNoticia(){
-  let image = document.getElementById("imagemForm").files[0]
+  let storageRef = firebase.storage().ref('noticia/' + image.name);
 
-  let storageRef= firebase.storage().ref('noticia/'+ image.name)
+  let uploadTask = storageRef.put(image);
 
-  let uploadTask = storageRef.put(image)
+  uploadTask.on(
+    'state_changed',
+    function (snapshot) {
+      var progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-  uploadTask.on('state_changed', function (snapshot){
-
-    var progresso =(snapshot.bytesTransferred/snapshot.totalBytes)*100
-
-    console.log("O Upload está "+ progresso +" completo")
-
-  },function(error){
-    console.log(error.message)
-  },function(){
-    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
-      url = downloadURL;
-      console.log(downloadURL)
-    })
-  })
+      console.log('O Upload está ' + progresso + ' completo');
+    },
+    function (error) {
+      console.log(error.message);
+    },
+    function () {
+      uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+        url = downloadURL;
+        console.log(downloadURL);
+      });
+    },
+  );
   return url;
 }
 
@@ -146,15 +132,8 @@ function removeRegistro(nomeTabela, atributo) {
       mostraModal('Falha', 'O registro não foi removido. Erro: ' + error);
     });
 }
-function criaNoticia(
-  categoria,
-  titulo,
-  autor,
-  olho,
-  corpo,
-  imagemUrl
-){
-  insere('noticia',{
+function criaNoticia(categoria, titulo, autor, olho, corpo, imagemUrl) {
+  insere('noticia', {
     categoria: categoria,
     titulo: titulo,
     autor: autor,
@@ -164,10 +143,7 @@ function criaNoticia(
     curtidas: 0,
     imagemUrl: imagemUrl,
   });
-  mostraModal(
-    'Notícia adicionada',
-    'A notícia foi adicionada com sucesso.',
-  );
+  mostraModal('Notícia adicionada', 'A notícia foi adicionada com sucesso.');
 }
 function criaUsuario(
   email,
@@ -318,41 +294,17 @@ function login() {
     .auth()
     .signInWithEmailAndPassword(email, senha)
     .then(() => {
-      search = db.collection('usuario').get();
+      mostraModal('Sucesso', 'Usuário conectado com sucesso.');
 
-      search
-        .then((data) => {
-          let contador = 0;
-          data.forEach((doc) => {
-            if (doc.data().email == email) {
-              contador++;
-            }
-          });
-
-          if (contador === 1) {
-            mostraModal('Sucesso', 'Usuário conectado com sucesso.');
-
-            document.getElementById('btnLogin').classList.add('d-none');
-            document.getElementById('btnRegistra').classList.add('d-none');
-            document.getElementById('btnExcluir').classList.remove('d-none');
-            document.getElementById('btnSair').classList.remove('d-none');
-            document.getElementById('msg-label').style.visibility = 'visible';
-          } else {
-            var user = firebase.auth().currentUser;
-            user
-              .delete()
-              .then(function () {
-                mostraModal('Falha', 'Usuário não encontrado');
-              })
-              .catch(function (error) {
-                mostraModal(
-                  'Falha',
-                  'Usuário não foi excluído. Erro: ' + error.message,
-                );
-              });
-          }
-        })
-        .catch((error) => {});
+      // document.getElementById('btnLogin').classList.add('d-none');
+      // document.getElementById('btnRegistra').classList.add('d-none');
+      // document.getElementById('btnExcluir').classList.remove('d-none');
+      // document.getElementById('btnSair').classList.remove('d-none');
+      // document.getElementById('secaoLogin').classList.add('d-none');
+      // document.getElementById('secaoCadastroTarefa').classList.remove('d-none');
+      // document.getElementById('divLista').classList.remove('invisible');
+      // document.getElementById('divLista').classList.remove('d-none');
+      carregaListaTarefas();
     })
     .catch(function (error) {
       mostraModal(
