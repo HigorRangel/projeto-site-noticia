@@ -81,6 +81,18 @@ function buscaTodosRegistros(nomeTabela, callback) {
       callback(resultados);
     });
 }
+function buscaNoticia(id,tipo){
+  db.collection('noticia')
+    .where('categoria', '==' , tipo.toString() )
+    .get()
+    .then((querySnapshot) => {
+      let resultados = new Array(0);
+      querySnapshot.forEach((doc) => {
+        resultados.push(doc.data());
+      });
+      noticiaComum(resultados,id,tipo);
+    });
+}
 
 function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
   db.collection(nomeTabela)

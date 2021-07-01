@@ -1,13 +1,21 @@
-function noticiaComum(listaNoticias) {
+function noticiaComum(listaNoticias,id) {
   listaNoticias = embaralhaNoticias(listaNoticias);
   var k = '';
+  var tipo = '';
+  if(id == 'areaNoticiasPolitica'){
+    tipo = 'politica';
+  }else if (id == 'areaNoticiasSaude'){
+    tipo = 'saude';
+  }else if(id == 'areaNoticiasEducacao'){
+    tipo = 'educacao';
+  }
 
   listaNoticias.forEach((noticia) => {
     console.log(noticia);
     k += '<div class="col-xs-12 col-sm-6 col-md-12 ">';
     k += '<div class="col-12 px-2">';
     k +=
-      '<div class="row noticia border-radius-principal border-noticia-educacao mt-3 ">';
+      '<div class="row noticia border-radius-principal border-noticia-' + tipo +' mt-3 ">';
     k += '<div class="col-12 col-md-6 col-lg-4  p-0">';
     k +=
       '<a href="#"><img class=" imagem-noticia" src="' +
@@ -51,7 +59,7 @@ function noticiaComum(listaNoticias) {
     k += '</div>';
     k += '</div>';
   });
-  document.getElementById('areaNoticiasInicio').innerHTML = k;
+  document.getElementById(id).innerHTML = k;
 }
 
 function embaralhaNoticias(lista) {
