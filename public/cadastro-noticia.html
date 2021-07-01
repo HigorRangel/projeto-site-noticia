@@ -19,7 +19,7 @@
   <title>Site de noticia</title>
 </head>
 
-<body>
+<body onload = "atualizarAuth()">
   <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
@@ -43,19 +43,15 @@
             <a class="nav-link text-light" href="saude.html">Saúde</a>
           </li>
           <li class="nav-item me-5  px-1 py-2 botao-navbar">
-            <a class="nav-link text-light" href="#">Fale Conosco</a>
+            <a class="nav-link text-light" href="contato.html">Fale Conosco</a>
+          </li>
+          <li id = "navLogin" class="nav-item me-5  px-1 py-2 botao-navbar">
+            <a class="nav-link text-light" href="login.html">Login</a>
           </li>
         </ul>
-        <div class="row justify-content-center align-items-center flex-row-reverse flex-xl-row">
-          <div class="col-xl-8 col-10 cliente-logado d-flex flex-column align-items-xl-end">
-            <p class="fw-bold text-white nome-cliente-logado m-0">HIGOR RANGEL</p>
-            <div>
-              <a class="text-white text-decoration-none" style="font-size: 0.9em;" href="#">Sair</a>
-            </div>
-          </div>
-          <div class="col-xl-4 col-2">
-            <img class="border border-white border-2 rounded-circle" src="images/Foto.jpg" alt="Foto" width="50">
-          </div>
+        <div id="divUsuario" class="d-none">
+          <p id="nomeUsuario">Login</p>
+          <button class= "btn btn-link text-white text-decoration-none"type="button" onclick="logout()" id='btnDeslogar'>Sair</button>
         </div>
       </div>
     </div>
