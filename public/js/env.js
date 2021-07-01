@@ -19,6 +19,7 @@ let auth = firebase.auth();
 
 let storage = firebase.storage();
 
+let usuarioLogado = null;
 // firebase.auth().signInWithEmailAndPassword('higor.rangel@aluno.ifsp.edu.br', '123mudar').catch(function(error) {
 
 //   console.log(error);
@@ -28,12 +29,14 @@ let storage = firebase.storage();
 //escutando status do firebase
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
+    usuarioLogado = user;
     console.log(user);
     //console.log(user);
     //online
     // document.getElementById("console").innerHTML = JSON.stringify( user );
   } else {
     //document.getElementById("console").innerHTML = 'OffLine!';
+    usuarioLogado = null;
   }
 });
 

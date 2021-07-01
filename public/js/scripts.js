@@ -57,32 +57,6 @@ function cadastraNoticia(event, email, senha) {
   );
 }
 
-function salvarImagemNoticia() {
-  let image = document.getElementById('imagemForm').files[0];
-
-  let storageRef = firebase.storage().ref('noticia/' + image.name);
-
-  let uploadTask = storageRef.put(image);
-
-  uploadTask.on(
-    'state_changed',
-    function (snapshot) {
-      var progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-      console.log('O Upload está ' + progresso + ' completo');
-    },
-    function (error) {
-      console.log(error.message);
-    },
-    function () {
-      uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-        url = downloadURL;
-        console.log(downloadURL);
-      });
-    },
-  );
-  return url;
-}
 
 function insere(nomeTabela, objetoInsercao) {
   db.collection(nomeTabela)
@@ -145,27 +119,19 @@ function criaNoticia(categoria, titulo, autor, olho, corpo, imagemUrl) {
   });
   mostraModal('Notícia adicionada', 'A notícia foi adicionada com sucesso.');
 }
+
 function criaUsuario(
   email,
   senha,
-  tipoUsuario,
-  primeiroNome,
-  nomesDoMeio,
-  ultimoNome,
+  nomeUsuario,
 ) {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, senha)
     .then((user) => {
-      insere('usuario', {
-        uid: user.user.uid,
-        tipo: tipoUsuario,
-        email: email,
-        primeiro_nome: primeiroNome,
-        nomes_meio: nomesDoMeio,
-        ultimo_nome: ultimoNome,
-        senha: senha,
-      });
+      user.user.updateProfile({
+        displayName: nomeUsuario
+      })
       mostraModal(
         'Usuário criado',
         'O usuário foi inserido com sucesso com o ID: ' + user.user.uid,
@@ -295,16 +261,7 @@ function login() {
     .signInWithEmailAndPassword(email, senha)
     .then(() => {
       mostraModal('Sucesso', 'Usuário conectado com sucesso.');
-
-      // document.getElementById('btnLogin').classList.add('d-none');
-      // document.getElementById('btnRegistra').classList.add('d-none');
-      // document.getElementById('btnExcluir').classList.remove('d-none');
-      // document.getElementById('btnSair').classList.remove('d-none');
-      // document.getElementById('secaoLogin').classList.add('d-none');
-      // document.getElementById('secaoCadastroTarefa').classList.remove('d-none');
-      // document.getElementById('divLista').classList.remove('invisible');
-      // document.getElementById('divLista').classList.remove('d-none');
-      carregaListaTarefas();
+      window.location.href = 'index.html';
     })
     .catch(function (error) {
       mostraModal(
@@ -341,20 +298,32 @@ function logout() {
     .signOut()
     .then(
       function () {
-        mostraModal('', 'O usuário foi deslogado.');
-
-        setTimeout(() => {
-          window.location.href = 'login.html';
-        }, 3500);
-
-        document.getElementById('btnLogin').classList.remove('d-none');
-        document.getElementById('btnRegistra').classList.remove('d-none');
-        document.getElementById('btnExcluir').classList.add('d-none');
-        document.getElementById('btnSair').classList.add('d-none');
-        document.getElementById('msg-label').style.visibility = 'hidden';
+        //mostraModal('O usuário foi deslogado.');
+        window.location.href = 'index.html';
       },
       function (error) {
-        mostraModal('', 'Não foi possível deslogar. Erro: ' + error.message);
+        //mostraModal('Não foi possível deslogar. Erro: ' + error.message);
       },
     );
+}
+
+function verificarAuth(){
+  var logado = false;
+  if(usuarioLogado != null){
+    logado = true;
+  }
+  return logado;
+}
+
+function atualizarAuth(){
+  setTimeout(() => {
+    if(verificarAuth()){
+      document.getElementById('navLogin').classList.add('d-none');
+      document.getElementById('divUsuario').classList.remove('d-none');
+      document.getElementById('navNoticia').classList.remove('d-none');
+
+      document.getElementById('nomeUsuario').innerHTML= usuarioLogado.displayName;
+    }
+  }, 400);
+  
 }
