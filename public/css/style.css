@@ -117,7 +117,6 @@ ul li {
   border-right: 2px solid #6b040f;
   border-top: 2px solid #6b040f;
   border-bottom: 2px solid #6b040f;
-  min-height: 5rem;
 }
 
 .imagem-autor {
@@ -150,11 +149,18 @@ ul li {
 }
 
 @media screen and (max-width: 768px) {
+  .noticia {
+    min-height: 35rem;
+  }
   .titulo-noticia-grande {
     transform: translate(0, -120%);
   }
   .imagem-noticia {
     border-radius: 10px;
+  }
+
+  #divImagemNoticia {
+    max-height: 250px;
   }
 
   .border-noticia-politica {
@@ -179,5 +185,17 @@ ul li {
 @media screen and (max-width: 992px) {
   .imagem-noticia {
     height: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .noticia {
+    min-height: 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .noticia-grande {
+    height: 180px;
   }
 }

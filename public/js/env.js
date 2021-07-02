@@ -1,4 +1,3 @@
-
 let firebaseConfig = {
   apiKey: 'AIzaSyAkCbxVqaWE-1Hwc8xGj5oKdTKgFugFlo4',
   authDomain: 'projeto-site-noticia.firebaseapp.com',
