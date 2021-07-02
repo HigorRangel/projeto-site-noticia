@@ -21,7 +21,7 @@ function noticiaComum(listaNoticias, id) {
       ' mt-3 ">';
     k += '<div class="col-12 col-md-6 col-lg-4 p-0" id="divImagemNoticia">';
     k +=
-      '<a href="#"><img class=" imagem-noticia" src="' +
+      '<a href="noticia.html?id='+ noticia.id +'"><img class=" imagem-noticia" src="' +
       noticia.imagemUrl +
       '" alt="Noticia"></a>';
     k += '</div>';
@@ -29,7 +29,7 @@ function noticiaComum(listaNoticias, id) {
     k += '<div class="row w-100">';
     k += '<div class="col-12 d-flex flex-column justify-content-between">';
     k +=
-      '<a href="#" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">' +
+      '<a href="noticia.html?id='+ noticia.id +'" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">' +
       noticia.titulo +
       '</a>';
     k +=
@@ -104,7 +104,7 @@ function noticiaGrande(noticia) {
   let k = '';
   k += '<div class="noticia-grande col-lg-12 col-xl-9 col-12 pe-xl-0">';
   k +=
-    '<a href="#" class="text-center d-flex align-items-end justify-content-center">';
+    '<a href="noticia.html?id='+ noticia.id +'" class="text-center d-flex align-items-end justify-content-center">';
   k +=
     '<img class="imagem-noticia-grande col-12" src="' +
     noticia.imagemUrl +
@@ -138,7 +138,6 @@ function tempoPostagem(data) {
   let diferencaSegundos = Math.abs(dataAtual.getTime() - dataPostagem.getTime());
   let diferencaDias  = Math.floor(diferencaSegundos / (1000 * 3600 * 24));
  
-  alert(diferencaDias);
   if(diferencaDias < 1 ){
     return "Hoje";
   }
@@ -148,4 +147,8 @@ function tempoPostagem(data) {
   else{
     return diferencaDias + " dias";
   }
+}
+
+function carregarNoticia(noticia){
+    document.getElementById('divNoticia').innerHTML = "<div>" + noticia.olho +"</div><div> " + noticia.corpo +"</div><div>" + noticia.imagemUrl +"</div>";
 }

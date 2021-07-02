@@ -1,5 +1,6 @@
 buscaNoticia('areaNoticiasInicio', 0);
 buscaTodosRegistros('noticia', noticiaMaisCurtida);
+const parametros = new URLSearchParams(window.location.search);
 
 function limpaCampos(event) {
   tipoUsuario = document.getElementById('tipoUsuarioRegistro').value = 0;
@@ -85,7 +86,6 @@ function buscaNoticia(id, tipo) {
   let where = [];
   if (tipo !== 0) {
     where = ['categoria', '==', tipo.toString()];
-    alert(where);
   } else {
     where = ['categoria', '!=', tipo.toString()];
   }
@@ -94,11 +94,24 @@ function buscaNoticia(id, tipo) {
     .get()
     .then((querySnapshot) => {
       let resultados = new Array(0);
+      var i = 0;
       querySnapshot.forEach((doc) => {
         resultados.push(doc.data());
+        resultados[i].id = doc.id;
+        i++;
       });
       noticiaComum(resultados, id, tipo);
     });
+}
+
+function buscarDadosNoticia(){
+  
+  db.collection('noticia')
+  .doc(parametros.get('id'))
+  .get()
+  .then(doc => {
+    carregarNoticia(doc.data());
+  })
 }
 
 function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
