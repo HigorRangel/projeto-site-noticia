@@ -1,4 +1,5 @@
-buscaTodosRegistros('noticia', noticiaComum);
+buscaNoticia('areaNoticiasInicio', 0);
+buscaTodosRegistros('noticia', noticiaMaisCurtida);
 
 function limpaCampos(event) {
   tipoUsuario = document.getElementById('tipoUsuarioRegistro').value = 0;
@@ -57,7 +58,6 @@ function cadastraNoticia(event, email, senha) {
   );
 }
 
-
 function insere(nomeTabela, objetoInsercao) {
   db.collection(nomeTabela)
     .add(objetoInsercao)
@@ -81,16 +81,23 @@ function buscaTodosRegistros(nomeTabela, callback) {
       callback(resultados);
     });
 }
-function buscaNoticia(id,tipo){
+function buscaNoticia(id, tipo) {
+  let where = [];
+  if (tipo !== 0) {
+    where = ['categoria', '==', tipo.toString()];
+    alert(where);
+  } else {
+    where = ['categoria', '!=', tipo.toString()];
+  }
   db.collection('noticia')
-    .where('categoria', '==' , tipo.toString() )
+    .where(...where)
     .get()
     .then((querySnapshot) => {
       let resultados = new Array(0);
       querySnapshot.forEach((doc) => {
         resultados.push(doc.data());
       });
-      noticiaComum(resultados,id,tipo);
+      noticiaComum(resultados, id, tipo);
     });
 }
 
@@ -132,18 +139,14 @@ function criaNoticia(categoria, titulo, autor, olho, corpo, imagemUrl) {
   mostraModal('Notícia adicionada', 'A notícia foi adicionada com sucesso.');
 }
 
-function criaUsuario(
-  email,
-  senha,
-  nomeUsuario,
-) {
+function criaUsuario(email, senha, nomeUsuario) {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, senha)
     .then((user) => {
       user.user.updateProfile({
-        displayName: nomeUsuario
-      })
+        displayName: nomeUsuario,
+      });
       mostraModal(
         'Usuário criado',
         'O usuário foi inserido com sucesso com o ID: ' + user.user.uid,
@@ -319,23 +322,23 @@ function logout() {
     );
 }
 
-function verificarAuth(){
+function verificarAuth() {
   var logado = false;
-  if(usuarioLogado != null){
+  if (usuarioLogado != null) {
     logado = true;
   }
   return logado;
 }
 
-function atualizarAuth(){
+function atualizarAuth() {
   setTimeout(() => {
-    if(verificarAuth()){
+    if (verificarAuth()) {
       document.getElementById('navLogin').classList.add('d-none');
       document.getElementById('divUsuario').classList.remove('d-none');
       document.getElementById('navNoticia').classList.remove('d-none');
 
-      document.getElementById('nomeUsuario').innerHTML= usuarioLogado.displayName;
+      document.getElementById('nomeUsuario').innerHTML =
+        usuarioLogado.displayName;
     }
   }, 400);
-  
 }

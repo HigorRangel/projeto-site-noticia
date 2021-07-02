@@ -1,22 +1,25 @@
-function noticiaComum(listaNoticias,id) {
+function noticiaComum(listaNoticias, id) {
   listaNoticias = embaralhaNoticias(listaNoticias);
   var k = '';
   var tipo = '';
-  if(id == 'areaNoticiasPolitica'){
-    tipo = 'politica';
-  }else if (id == 'areaNoticiasSaude'){
-    tipo = 'saude';
-  }else if(id == 'areaNoticiasEducacao'){
-    tipo = 'educacao';
-  }
-
+  contador = 0;
   listaNoticias.forEach((noticia) => {
-    console.log(noticia);
+    tempoPostagem(noticia.data);
+    if (noticia.categoria === '1') {
+      tipo = 'politica';
+    } else if (noticia.categoria === '2') {
+      tipo = 'saude';
+    } else if (noticia.categoria === '3') {
+      tipo = 'educacao';
+    }
+
     k += '<div class="col-xs-12 col-sm-6 col-md-12 ">';
     k += '<div class="col-12 px-2">';
     k +=
-      '<div class="row noticia border-radius-principal border-noticia-' + tipo +' mt-3 ">';
-    k += '<div class="col-12 col-md-6 col-lg-4  p-0">';
+      '<div class="row noticia border-radius-principal border-noticia-' +
+      tipo +
+      ' mt-3 ">';
+    k += '<div class="col-12 col-md-6 col-lg-4 p-0" id="divImagemNoticia">';
     k +=
       '<a href="#"><img class=" imagem-noticia" src="' +
       noticia.imagemUrl +
@@ -35,21 +38,19 @@ function noticiaComum(listaNoticias,id) {
       '</p>';
     k += '</div>';
 
-    k += '<div class="col-12 row align-content-center mb-1 mb-md-2 mb-lg-0">';
-    k += '<div class="col-lg-1 col-2 me-2 me-md-0">';
+    k += '<div class="col-12 row align-content-end pb-1 mb-1 mb-md-2 mb-lg-0">';
+
+    k += '<div class="col-lg-9 col-7 d-flex align-items-center">';
     k +=
-      '<img src="https://via.placeholder.com/20x20" class=" imagem-autor border-principal" alt="" width="25">';
+      '<p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">' +
+      noticia.autor +
+      '</p>';
     k += '</div>';
 
-    k += '<div class="col-lg-8 col-6 p-0  d-flex align-items-center">';
     k +=
-      '<p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">sdfs</p>';
-    k += '</div>';
-
+      '<div class="col-lg-3 col-5 p-0  d-flex justify-content-end align-items-center">';
     k +=
-      '<div class="col-3 p-0  d-flex justify-content-end align-items-center">';
-    k +=
-      '<p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">10 min. atrás</p>';
+      '<p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">' + tempoPostagem(noticia.data) + '</p>';
 
     k += '</div>';
     k += '</div>';
@@ -58,8 +59,30 @@ function noticiaComum(listaNoticias,id) {
     k += '</div>';
     k += '</div>';
     k += '</div>';
+
+    contador++;
+    if (contador == 6) {
+    }
   });
   document.getElementById(id).innerHTML = k;
+}
+
+function noticiaMaisCurtida(listaNoticias) {
+  var k = '';
+  let curtidas = 0;
+
+  listaNoticias.forEach((noticia) => {
+    if (curtidas === 0) {
+      curtidas = noticia.curtidas;
+      k = noticiaGrande(noticia);
+    } else if (noticia.curtidas > curtidas) {
+      curtidas = noticia.curtidas;
+      k = noticiaGrande(noticia);
+    }
+  });
+
+  console.log(k);
+  document.getElementById('areaNoticiaGrandeInicio').innerHTML = k;
 }
 
 function embaralhaNoticias(lista) {
@@ -67,16 +90,62 @@ function embaralhaNoticias(lista) {
     t,
     i;
 
-  // While there remain elements to shuffle…
   while (elementos) {
-    // Pick a remaining element…
     i = Math.floor(Math.random() * elementos--);
-
-    // And swap it with the current element.
     t = lista[elementos];
     lista[elementos] = lista[i];
     lista[i] = t;
   }
 
   return lista;
+}
+
+function noticiaGrande(noticia) {
+  let k = '';
+  k += '<div class="noticia-grande col-lg-12 col-xl-9 col-12 pe-xl-0">';
+  k +=
+    '<a href="#" class="text-center d-flex align-items-end justify-content-center">';
+  k +=
+    '<img class="imagem-noticia-grande col-12" src="' +
+    noticia.imagemUrl +
+    '" alt="Noticia Grande">';
+  k += '</a>';
+  k +=
+    '<h1 class="h5 text-center text-white titulo-noticia-grande text-black mb-xl-5 mx-xl-5 d-block d-xl-none" style="font-weight: 600; font-size: 1.2em;">' +
+    noticia.titulo +
+    '</h1>';
+  k += ' </div>';
+
+  k +=
+    '<div class="corpo-noticia-grande d-xl-block d-none col-12 col-xl-3 mt-lg-0 mt-5 shadow-principal" style="max-height: 555.52px;">';
+  k +=
+    ' <h1 class="h6 text-principal pt-3 py text-center titulo-sub-secao d-none d-lg-block" style="font-weight: 600;"><span class="">' +
+    noticia.titulo +
+    '</span></h1>';
+  k +=
+    ' <div class="corpo-mensagem-grande m-3 d-flex flex-column justify-content-center" style="max-height: 542px;">';
+  k +=
+    '<p class="" style="text-align: justify; font-size: .9em;">' + noticia.olho;
+  k += '</p> </div> </div>';
+
+  return k;
+}
+
+function tempoPostagem(data) {
+  let dataPostagem = new Date(data.seconds * 1000);
+  let dataAtual = new Date();
+
+  let diferencaSegundos = Math.abs(dataAtual.getTime() - dataPostagem.getTime());
+  let diferencaDias  = Math.floor(diferencaSegundos / (1000 * 3600 * 24));
+ 
+  alert(diferencaDias);
+  if(diferencaDias < 1 ){
+    return "Hoje";
+  }
+  else if(diferencaDias < 2 ){
+    return "Ontem";
+  }
+  else{
+    return diferencaDias + " dias";
+  }
 }

@@ -21,7 +21,7 @@
   <title>Site de noticia</title>
 </head>
 
-<body onload = "atualizarAuth()">
+<body onload="atualizarAuth()">
   <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
@@ -47,16 +47,16 @@
           <li class="nav-item me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="contato.html">Fale Conosco</a>
           </li>
-          <li id = "navLogin" class="nav-item me-5  px-1 py-2 botao-navbar">
+          <li id="navLogin" class="nav-item me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="login.html">Login</a>
           </li>
-          <li id = "navNoticia" class="nav-item me-5  px-1 py-2 botao-navbar d-none">
+          <li id="navNoticia" class="nav-item me-5  px-1 py-2 botao-navbar d-none">
             <a class="nav-link text-light" href="cadastro-noticia.html">Cadastrar Notícia</a>
           </li>
         </ul>
         <div id="divUsuario" class="d-none">
           <p id="nomeUsuario">Login</p>
-          <button class= "btn btn-link text-white text-decoration-none" type="button" onclick="logout()" id='btnDeslogar'>Sair</button>
+          <button class="btn btn-link text-white text-decoration-none" type="button" onclick="logout()" id='btnDeslogar'>Sair</button>
         </div>
         <!-- <div class="row justify-content-center align-items-center flex-row-reverse flex-xl-row">
           <div class="col-xl-8 col-10 cliente-logado d-flex flex-column align-items-xl-end">
@@ -76,15 +76,15 @@
   <section class="container secao-principal p-4">
     <div class=" row flex-row-reverse flex-lg-row pt-4">
       <div class="col-12">
-        <div class="row">
-          <div class="noticia-grande col-lg-12 col-xl-9 col-12 pe-xl-0">
+        <div class="row" id="areaNoticiaGrandeInicio">
+          <!-- <div class="noticia-grande col-lg-12 col-xl-9 col-12 pe-xl-0">
             <a href="#" class="text-center d-flex align-items-end justify-content-center">
               <img class="imagem-noticia-grande col-12" src="https://s2.glbimg.com/LCS9X1HlONUImxDlOh4RY4NTeq0=/540x304/top/smart/https://i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/m/M/7lOlbqRcyKCNpsZGQHGQ/image001.jpg" alt="Noticia Grande">
             </a>
             <h1 class="h5 text-center text-white titulo-noticia-grande text-black mb-xl-5 mx-xl-5 d-block d-xl-none" style="font-weight: 600; font-size: 1.2em;">Vacinas contra Covid-19 só chegarão para todo mundo no fim de 2023 no ritmo atual, calcula editor-chefe da Lancet</h1>
           </div>
 
-          <!-- Notícias corpo notícia grande -->
+           Notícias corpo notícia grande -->
           <div class="corpo-noticia-grande d-xl-block d-none col-12 col-xl-3 mt-lg-0 mt-5 shadow-principal" style="max-height: 555.52px;">
             <h1 class="h6 text-principal pt-3 py text-center titulo-sub-secao d-none d-lg-block" style="font-weight: 600;"><span class="">Vacinas contra Covid-19 só chegarão para todo mundo no fim de 2023 no ritmo atual, calcula editor-chefe da Lancet</span></h1>
             <div class="corpo-mensagem-grande m-3 d-flex flex-column justify-content-center" style="max-height: 542px;">
@@ -94,7 +94,7 @@
                 <br>Ele é responsável por receber os manuscritos originais, enviados por laboratórios e especialistas de várias partes do mundo, e encaminhá-los para o time de editores independentes, que faz a revisão e a análise do conteúdo antes da divulgação.
               </p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
