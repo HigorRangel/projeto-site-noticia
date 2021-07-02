@@ -3,66 +3,13 @@ function noticiaComum(listaNoticias, id) {
   var k = '';
   var tipo = '';
   contador = 0;
-  listaNoticias.forEach((noticia) => {
-    tempoPostagem(noticia.data);
-    if (noticia.categoria === '1') {
-      tipo = 'politica';
-    } else if (noticia.categoria === '2') {
-      tipo = 'saude';
-    } else if (noticia.categoria === '3') {
-      tipo = 'educacao';
+  listaNoticias.forEach(function (noticia) {
+    if (contador < 6 && id == 'areaNoticiasInicio') {
+      k += noticiaComumDiv(noticia);
+    } else if (id != 'areaNoticiasInicio') {
+      k += noticiaComumDiv(noticia);
     }
-
-    k += '<div class="col-xs-12 col-sm-6 col-md-12 ">';
-    k += '<div class="col-12 px-2">';
-    k +=
-      '<div class="row noticia border-radius-principal border-noticia-' +
-      tipo +
-      ' mt-3 ">';
-    k += '<div class="col-12 col-md-6 col-lg-4 p-0" id="divImagemNoticia">';
-    k +=
-      '<a href="noticia.html?id='+ noticia.id +'"><img class=" imagem-noticia" src="' +
-      noticia.imagemUrl +
-      '" alt="Noticia"></a>';
-    k += '</div>';
-    k += '<div class="col-12 col-md-6 col-lg-8 p-0 m-0 pt-2 px-2 d-flex ">';
-    k += '<div class="row w-100">';
-    k += '<div class="col-12 d-flex flex-column justify-content-between">';
-    k +=
-      '<a href="noticia.html?id='+ noticia.id +'" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">' +
-      noticia.titulo +
-      '</a>';
-    k +=
-      '<p class="text-cinza mt-2" style="text-align: justify ; font-size: 12px;">' +
-      noticia.olho +
-      '</p>';
-    k += '</div>';
-
-    k += '<div class="col-12 row align-content-end pb-1 mb-1 mb-md-2 mb-lg-0">';
-
-    k += '<div class="col-lg-9 col-7 d-flex align-items-center">';
-    k +=
-      '<p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">' +
-      noticia.autor +
-      '</p>';
-    k += '</div>';
-
-    k +=
-      '<div class="col-lg-3 col-5 p-0  d-flex justify-content-end align-items-center">';
-    k +=
-      '<p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">' + tempoPostagem(noticia.data) + '</p>';
-
-    k += '</div>';
-    k += '</div>';
-    k += '</div>';
-    k += '</div>';
-    k += '</div>';
-    k += '</div>';
-    k += '</div>';
-
     contador++;
-    if (contador == 6) {
-    }
   });
   document.getElementById(id).innerHTML = k;
 }
@@ -104,7 +51,9 @@ function noticiaGrande(noticia) {
   let k = '';
   k += '<div class="noticia-grande col-lg-12 col-xl-9 col-12 pe-xl-0">';
   k +=
-    '<a href="noticia.html?id='+ noticia.id +'" class="text-center d-flex align-items-end justify-content-center">';
+    '<a href="noticia.html?id=' +
+    noticia.id +
+    '" class="text-center d-flex align-items-end justify-content-center">';
   k +=
     '<img class="imagem-noticia-grande col-12" src="' +
     noticia.imagemUrl +
@@ -135,20 +84,103 @@ function tempoPostagem(data) {
   let dataPostagem = new Date(data.seconds * 1000);
   let dataAtual = new Date();
 
-  let diferencaSegundos = Math.abs(dataAtual.getTime() - dataPostagem.getTime());
-  let diferencaDias  = Math.floor(diferencaSegundos / (1000 * 3600 * 24));
- 
-  if(diferencaDias < 1 ){
-    return "Hoje";
-  }
-  else if(diferencaDias < 2 ){
-    return "Ontem";
-  }
-  else{
-    return diferencaDias + " dias";
+  let diferencaSegundos = Math.abs(
+    dataAtual.getTime() - dataPostagem.getTime(),
+  );
+  let diferencaDias = Math.floor(diferencaSegundos / (1000 * 3600 * 24));
+
+  if (diferencaDias < 1) {
+    return 'Hoje';
+  } else if (diferencaDias < 2) {
+    return 'Ontem';
+  } else {
+    return diferencaDias + ' dias';
   }
 }
 
-function carregarNoticia(noticia){
-    document.getElementById('divNoticia').innerHTML = "<div>" + noticia.olho +"</div><div> " + noticia.corpo +"</div><div>" + noticia.imagemUrl +"</div>";
+function carregarNoticia(noticia) {
+  document.getElementById('imagem-pagina-noticia').src = noticia.imagemUrl;
+  document.getElementById('titulo-pagina-noticia').innerText = noticia.titulo;
+  document.getElementById('corpo-pagina-noticia').innerHTML = noticia.corpo;
+  document.getElementById('curtidas-pagina-noticia').innerHTML =
+    noticia.curtidas;
+  document.getElementById('autor-pagina-noticia').innerHTML = noticia.autor;
+  document.getElementById('data-pagina-noticia').innerHTML =
+    converteTimestampData(noticia.data);
+}
+
+function noticiaComumDiv(noticia) {
+  var k = '';
+  if (noticia.categoria === '1') {
+    tipo = 'politica';
+  } else if (noticia.categoria === '2') {
+    tipo = 'saude';
+  } else if (noticia.categoria === '3') {
+    tipo = 'educacao';
+  }
+
+  k += '<div class="col-xs-12 col-sm-6 col-md-12 ">';
+  k += '<div class="col-12 px-2">';
+  k +=
+    '<div class="row noticia border-radius-principal border-noticia-' +
+    tipo +
+    ' mt-3 ">';
+  k += '<div class="col-12 col-md-6 col-lg-4 p-0" id="divImagemNoticia">';
+  k +=
+    '<a href="noticia.html?id=' +
+    noticia.id +
+    '"><img class=" imagem-noticia" src="' +
+    noticia.imagemUrl +
+    '" alt="Noticia"></a>';
+  k += '</div>';
+  k += '<div class="col-12 col-md-6 col-lg-8 p-0 m-0 pt-2 px-2 d-flex ">';
+  k += '<div class="row w-100">';
+  k += '<div class="col-12 d-flex flex-column justify-content-between">';
+  k +=
+    '<a href="noticia.html?id=' +
+    noticia.id +
+    '" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">' +
+    noticia.titulo +
+    '</a>';
+  k +=
+    '<p class="text-cinza mt-2" style="text-align: justify ; font-size: 12px;">' +
+    noticia.olho +
+    '</p>';
+  k += '</div>';
+
+  k += '<div class="col-12 row align-content-end pb-1 mb-1 mb-md-2 mb-lg-0">';
+
+  k += '<div class="col-lg-9 col-7 d-flex align-items-center">';
+  k +=
+    '<p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">' +
+    noticia.autor +
+    '</p>';
+  k += '</div>';
+
+  k +=
+    '<div class="col-lg-3 col-5 p-0  d-flex justify-content-end align-items-center">';
+  k +=
+    '<p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">' +
+    tempoPostagem(noticia.data) +
+    '</p>';
+
+  k += '</div>';
+  k += '</div>';
+  k += '</div>';
+  k += '</div>';
+  k += '</div>';
+  k += '</div>';
+  k += '</div>';
+
+  return k;
+}
+
+function converteTimestampData(timestamp) {
+  let data = new Date(timestamp.seconds * 1000);
+  (dia = data.getDate().toString()),
+    (diaF = dia.length == 1 ? '0' + dia : dia),
+    (mes = (data.getMonth() + 1).toString()), //+1 pois no getMonth Janeiro começa com zero.
+    (mesF = mes.length == 1 ? '0' + mes : mes),
+    (anoF = data.getFullYear());
+  return diaF + '/' + mesF + '/' + anoF;
 }
