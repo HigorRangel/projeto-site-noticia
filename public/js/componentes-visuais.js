@@ -98,6 +98,21 @@ function tempoPostagem(data) {
   }
 }
 
+function isCurtida(noticia){
+  buscaRegistroPorAtributo("curtidas", [])
+}
+
+function setBotaoCurtir(curtidas){
+  if(curtidas.length > 0){
+    document.getElementById('coracao-curtir-pagina-noticia').classList.remove('fas');
+    document.getElementById('coracao-curtir-pagina-noticia').classList.add('far');
+  }
+  else{
+    document.getElementById('coracao-curtir-pagina-noticia').classList.remove('far');
+    document.getElementById('coracao-curtir-pagina-noticia').classList.add('fas');
+  }
+}
+
 function carregarNoticia(noticia) {
   document.getElementById('imagem-pagina-noticia').src = noticia.imagemUrl;
   document.getElementById('titulo-pagina-noticia').innerText = noticia.titulo;
