@@ -121,7 +121,9 @@ function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         resultados.push(doc.data());
-        callback(doc);
+        if(callback){
+          callback(doc);
+        }
       });
     });
   return resultados;
@@ -353,5 +355,5 @@ function atualizarAuth() {
       document.getElementById('nomeUsuario').innerHTML =
         usuarioLogado.displayName;
     }
-  }, 400);
+  }, 1000);
 }
