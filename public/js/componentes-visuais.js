@@ -214,9 +214,7 @@ function noticiaComumDiv(noticia) {
 }
 
 function carregarBusca(noticias){
-  setTimeout(() => {
     noticiaComum(noticias,'areaNoticiasBusca');
-  }, 1000); 
 }
 
 function converteTimestampData(timestamp) {

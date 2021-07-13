@@ -383,11 +383,12 @@ function procurarNoticia(){
     let resultados = new Array(0);
     let pesquisa = parametros.get('b');
     db.collection('noticia')
-      .where('titulo', '>=', pesquisa).where('titulo', '<=', pesquisa+ '\uf8ff')
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+          if(doc.data().titulo.includes(pesquisa)){
           resultados.push(doc.data());
+          }
         });
 
         carregarBusca(resultados);
