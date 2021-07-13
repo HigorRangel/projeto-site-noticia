@@ -113,6 +113,10 @@ function buscarDadosNoticia() {
     });
 }
 
+function buscarResultado() {
+  document.location.href="resultado-busca.html?b=" + document.getElementById('campo-busca').value;
+}
+
 function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
   db.collection(nomeTabela)
     .where(...atributos)
@@ -370,4 +374,32 @@ function atualizarAuth() {
         usuarioLogado.displayName;
     }
   }, 1000);
+}
+function criaMensagem(nome,email,mensagem){
+
+  insere('mensagem', {
+    nome: nome,
+    email: email,
+    mensagem:mensagem
+  });
+  mostraModal('Mensagem enviada', 'Responderemos no seu e-mail assim que possível!');
+
+}
+
+function procurarNoticia(){
+    let resultados = new Array(0);
+    let pesquisa = parametros.get('b');
+    db.collection('noticia')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if(doc.data().titulo.includes(pesquisa)){
+          resultados.push(doc.data());
+          }
+        });
+
+        carregarBusca(resultados);
+        
+       
+      });
 }
