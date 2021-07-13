@@ -118,7 +118,29 @@ function buscarDadosNoticia() {
 }
 
 function buscarResultado() {
-  document.location.href="resultado-busca.html?b=" + document.getElementById('campo-busca').value;
+  document.location.href =
+    'resultado-busca.html?b=' + document.getElementById('campo-busca').value;
+}
+
+function atualizaCurtidaNoticia(operacao) {
+  db.collection('noticia')
+    .doc(parametros.get('id'))
+    .get()
+    .then((doc) => {
+      let numCurtidas = doc.data().curtidas;
+      if (operacao) {
+        numCurtidas++;
+      } else {
+        numCurtidas--;
+      }
+      doc.ref
+        .update({
+          curtidas: numCurtidas,
+        })
+        .then(() => {
+          atualizarNumeroCurtida(numCurtidas);
+        });
+    });
 }
 
 function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
@@ -379,31 +401,30 @@ function atualizarAuth() {
     }
   }, 1000);
 }
-function criaMensagem(nome,email,mensagem){
-
+function criaMensagem(nome, email, mensagem) {
   insere('mensagem', {
     nome: nome,
     email: email,
-    mensagem:mensagem
+    mensagem: mensagem,
   });
-  mostraModal('Mensagem enviada', 'Responderemos no seu e-mail assim que possível!');
-
+  mostraModal(
+    'Mensagem enviada',
+    'Responderemos no seu e-mail assim que possível!',
+  );
 }
 
-function procurarNoticia(){
-    let resultados = new Array(0);
-    let pesquisa = parametros.get('b');
-    db.collection('noticia')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if(doc.data().titulo.includes(pesquisa)){
+function procurarNoticia() {
+  let resultados = new Array(0);
+  let pesquisa = parametros.get('b');
+  db.collection('noticia')
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().titulo.includes(pesquisa)) {
           resultados.push(doc.data());
-          }
-        });
-
-        carregarBusca(resultados);
-        
-       
+        }
       });
+
+      carregarBusca(resultados);
+    });
 }
