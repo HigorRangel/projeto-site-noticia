@@ -104,14 +104,13 @@ function buscaNoticia(id, tipo) {
     });
 }
 
-function buscarDadosNoticia(){
-  
+function buscarDadosNoticia() {
   db.collection('noticia')
-  .doc(parametros.get('id'))
-  .get()
-  .then(doc => {
-    carregarNoticia(doc.data());
-  })
+    .doc(parametros.get('id'))
+    .get()
+    .then((doc) => {
+      carregarNoticia(doc.data());
+    });
 }
 
 function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
@@ -119,22 +118,25 @@ function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
     .where(...atributos)
     .get()
     .then((querySnapshot) => {
+      let resultados = new Array(0);
       querySnapshot.forEach((doc) => {
         resultados.push(doc.data());
-        if(callback){
-          callback(doc);
-        }
       });
+      if (callback) {
+        callback(resultados);
+      }
     });
-  return resultados;
 }
 
-function removeRegistro(nomeTabela, atributo) {
+function removeRegistro(nomeTabela, atributo, callback) {
   db.collection(nomeTabela)
     .doc(atributo)
     .delete()
     .then(() => {
       mostraModal('Sucesso', 'O registro foi removido com sucesso!');
+      if (callback) {
+        callback();
+      }
     })
     .catch((error) => {
       mostraModal('Falha', 'O registro não foi removido. Erro: ' + error);

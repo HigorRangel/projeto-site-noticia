@@ -98,18 +98,40 @@ function tempoPostagem(data) {
   }
 }
 
-function isCurtida(noticia){
-  buscaRegistroPorAtributo("curtidas", [])
+function isCurtida(noticia) {
+  console.log(usuarioLogado);
+
+  if (usuarioLogado != null) {
+    buscaRegistroPorAtributo(
+      'curtidas',
+      ['noticia', '==', getIdNoticia()],
+      setBotaoCurtir,
+    );
+  }
 }
 
-function setBotaoCurtir(curtidas){
-  if(curtidas.length > 0){
-    document.getElementById('coracao-curtir-pagina-noticia').classList.remove('fas');
-    document.getElementById('coracao-curtir-pagina-noticia').classList.add('far');
-  }
-  else{
-    document.getElementById('coracao-curtir-pagina-noticia').classList.remove('far');
-    document.getElementById('coracao-curtir-pagina-noticia').classList.add('fas');
+function getIdNoticia() {
+  let linkNoticia = window.location.href;
+  let indexId = linkNoticia.search('(\\w+)(?!.*\\w)');
+  idNoticia = linkNoticia.substring(indexId);
+  return idNoticia;
+}
+
+function setBotaoCurtir(curtidas) {
+  if (curtidas.filter((e) => e.usuario === usuarioLogado.uid)) {
+    document
+      .getElementById('coracao-curtir-pagina-noticia')
+      .classList.remove('far');
+    document
+      .getElementById('coracao-curtir-pagina-noticia')
+      .classList.add('fas');
+  } else {
+    document
+      .getElementById('coracao-curtir-pagina-noticia')
+      .classList.remove('fas');
+    document
+      .getElementById('coracao-curtir-pagina-noticia')
+      .classList.add('far');
   }
 }
 
@@ -122,6 +144,7 @@ function carregarNoticia(noticia) {
   document.getElementById('autor-pagina-noticia').innerHTML = noticia.autor;
   document.getElementById('data-pagina-noticia').innerHTML =
     converteTimestampData(noticia.data);
+  isCurtida(noticia);
 }
 
 function noticiaComumDiv(noticia) {
@@ -198,4 +221,18 @@ function converteTimestampData(timestamp) {
     (mesF = mes.length == 1 ? '0' + mes : mes),
     (anoF = data.getFullYear());
   return diaF + '/' + mesF + '/' + anoF;
+}
+
+function curtirDescurtir() {
+  botaoCurtir = document.getElementById('coracao-curtir-pagina-noticia');
+  curtida = botaoCurtir.classList.contains('fas');
+  if (curtida) {
+    removeRegistro('curtidas', getIdNoticia());
+    botaoCurtir.classList.remove('fas');
+    botaoCurtir.classList.add('far');
+  } else {
+    insere('curtidas', { usuario: usuarioLogado.uid, noticia: getIdNoticia() });
+    botaoCurtir.classList.remove('far');
+    botaoCurtir.classList.add('fas');
+  }
 }
