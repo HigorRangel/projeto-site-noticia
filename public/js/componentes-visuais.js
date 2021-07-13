@@ -105,7 +105,7 @@ function isCurtida(noticia) {
     buscaRegistroPorAtributo(
       'curtidas',
       ['noticia', '==', getIdNoticia()],
-      setBotaoCurtir(),
+      setBotaoCurtir,
     );
   }
 }
@@ -118,7 +118,10 @@ function getIdNoticia() {
 }
 
 function setBotaoCurtir(curtidas) {
-  if (curtidas.filter((e) => e.usuario === usuarioLogado.uid)) {
+  if (
+    curtidas.filter((e) => e.usuario === usuarioLogado.uid) &&
+    curtidas.length !== 0
+  ) {
     document
       .getElementById('coracao-curtir-pagina-noticia')
       .classList.remove('far');
@@ -133,6 +136,10 @@ function setBotaoCurtir(curtidas) {
       .getElementById('coracao-curtir-pagina-noticia')
       .classList.add('far');
   }
+}
+
+function atualizarNumeroCurtida(numCurtidas) {
+  document.getElementById('curtidas-pagina-noticia').innerHTML = numCurtidas;
 }
 
 function carregarNoticia(noticia) {
@@ -213,8 +220,8 @@ function noticiaComumDiv(noticia) {
   return k;
 }
 
-function carregarBusca(noticias){
-    noticiaComum(noticias,'areaNoticiasBusca');
+function carregarBusca(noticias) {
+  noticiaComum(noticias, 'areaNoticiasBusca');
 }
 
 function converteTimestampData(timestamp) {
@@ -232,10 +239,12 @@ function curtirDescurtir() {
   curtida = botaoCurtir.classList.contains('fas');
   if (curtida) {
     removeCurtida(getIdNoticia());
+    atualizaCurtidaNoticia(false);
     botaoCurtir.classList.remove('fas');
     botaoCurtir.classList.add('far');
   } else {
     insere('curtidas', { usuario: usuarioLogado.uid, noticia: getIdNoticia() });
+    atualizaCurtidaNoticia(true);
     botaoCurtir.classList.remove('far');
     botaoCurtir.classList.add('fas');
   }
