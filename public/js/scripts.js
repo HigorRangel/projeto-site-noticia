@@ -117,6 +117,10 @@ function buscarDadosNoticia() {
     });
 }
 
+function buscarResultado() {
+  document.location.href="resultado-busca.html?b=" + document.getElementById('campo-busca').value;
+}
+
 function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
   db.collection(nomeTabela)
     .where(...atributos)
@@ -373,4 +377,21 @@ function criaMensagem(nome,email,mensagem){
   });
   mostraModal('Mensagem enviada', 'Responderemos no seu e-mail assim que possível!');
 
+}
+
+function procurarNoticia(){
+    let resultados = new Array(0);
+    let pesquisa = parametros.get('b');
+    db.collection('noticia')
+      .where('titulo', '>=', pesquisa).where('titulo', '<=', pesquisa+ '\uf8ff')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          resultados.push(doc.data());
+        });
+
+        carregarBusca(resultados);
+        
+       
+      });
 }

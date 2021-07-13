@@ -213,6 +213,12 @@ function noticiaComumDiv(noticia) {
   return k;
 }
 
+function carregarBusca(noticias){
+  setTimeout(() => {
+    noticiaComum(noticias,'areaNoticiasBusca');
+  }, 1000); 
+}
+
 function converteTimestampData(timestamp) {
   let data = new Date(timestamp.seconds * 1000);
   (dia = data.getDate().toString()),
