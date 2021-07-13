@@ -59,10 +59,6 @@ function cadastraNoticia(event, email, senha) {
   );
 }
 
-function cadastraMensagem(){
-  criaMensagem(document.getElementById('nomeContato').value,document.getElementById('emailContato').value,document.getElementById('mensagemContato').value);
-}
-
 function insere(nomeTabela, objetoInsercao) {
   db.collection(nomeTabela)
     .add(objetoInsercao)
@@ -133,6 +129,18 @@ function buscaRegistroPorAtributo(nomeTabela, atributos, callback) {
       if (callback) {
         callback(resultados);
       }
+    });
+}
+
+function removeCurtida(idNoticia) {
+  db.collection('curtidas')
+    .where('noticia', '==', idNoticia)
+    .where('usuario', '==', usuarioLogado.uid)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        doc.ref.delete();
+      });
     });
 }
 
@@ -367,7 +375,6 @@ function atualizarAuth() {
     }
   }, 1000);
 }
-
 function criaMensagem(nome,email,mensagem){
 
   insere('mensagem', {

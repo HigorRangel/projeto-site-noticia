@@ -105,7 +105,7 @@ function isCurtida(noticia) {
     buscaRegistroPorAtributo(
       'curtidas',
       ['noticia', '==', getIdNoticia()],
-      setBotaoCurtir,
+      setBotaoCurtir(),
     );
   }
 }
@@ -231,7 +231,7 @@ function curtirDescurtir() {
   botaoCurtir = document.getElementById('coracao-curtir-pagina-noticia');
   curtida = botaoCurtir.classList.contains('fas');
   if (curtida) {
-    removeRegistro('curtidas', getIdNoticia());
+    removeCurtida(getIdNoticia());
     botaoCurtir.classList.remove('fas');
     botaoCurtir.classList.add('far');
   } else {
