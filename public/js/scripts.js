@@ -59,6 +59,10 @@ function cadastraNoticia(event, email, senha) {
   );
 }
 
+function cadastraMensagem(){
+  criaMensagem(document.getElementById('nomeContato').value,document.getElementById('emailContato').value,document.getElementById('mensagemContato').value);
+}
+
 function insere(nomeTabela, objetoInsercao) {
   db.collection(nomeTabela)
     .add(objetoInsercao)
