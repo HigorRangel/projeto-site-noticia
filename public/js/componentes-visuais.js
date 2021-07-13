@@ -217,6 +217,10 @@ function carregarBusca(noticias){
     noticiaComum(noticias,'areaNoticiasBusca');
 }
 
+function carregarCurtidas(noticias){
+  noticiaComum(noticias,'areaNoticiasCurtidas');
+}
+
 function converteTimestampData(timestamp) {
   let data = new Date(timestamp.seconds * 1000);
   (dia = data.getDate().toString()),

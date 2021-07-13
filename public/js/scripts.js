@@ -403,7 +403,24 @@ function procurarNoticia(){
         });
 
         carregarBusca(resultados);
-        
-       
       });
+}
+
+function noticiasCurtidas(){
+  db.collection('curtidas')
+    .where('usuario', '==' , usuarioLogado.uid)
+    .get()
+    .then((querySnapshot) => {
+      let resultados = new Array(0);
+      querySnapshot.forEach((doc) => {
+        db.collection('noticia')
+        .doc(doc.data().noticia)
+        .get()
+        .then((noticia) => {
+          resultados.push(noticia.data());
+        })
+        
+      });
+      console.log(resultados); 
+    });
 }
