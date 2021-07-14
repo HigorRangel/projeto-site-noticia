@@ -27,8 +27,6 @@ function noticiaMaisCurtida(listaNoticias) {
       k = noticiaGrande(noticia);
     }
   });
-
-  console.log(k);
   document.getElementById('areaNoticiaGrandeInicio').innerHTML = k;
 }
 
@@ -99,7 +97,6 @@ function tempoPostagem(data) {
 }
 
 function isCurtida(noticia) {
-  console.log(usuarioLogado);
 
   if (usuarioLogado != null) {
     buscaRegistroPorAtributo(
@@ -231,7 +228,6 @@ function carregarCurtidas(noticias){
 function carregarPaginaCurtidas(){
   
   setTimeout(() => {
-    console.log(usuarioLogado.uid)
     noticiasCurtidas(usuarioLogado.uid);
   }, 1000);
 }

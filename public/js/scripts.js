@@ -80,9 +80,13 @@ function buscaTodosRegistros(nomeTabela, callback) {
   db.collection(nomeTabela)
     .get()
     .then((querySnapshot) => {
+       var i = 0;
       let resultados = new Array(0);
       querySnapshot.forEach((doc) => {
         resultados.push(doc.data());
+        
+        resultados[i].id = doc.id;
+        i++;
       });
       callback(resultados);
     });
@@ -262,10 +266,6 @@ function atualizaSenha(email) {
     });
 }
 
-function carregaListaUsuarios() {
-  let listaUsuarios = buscaTodosRegistros('usuario', addLinhaUsuario);
-}
-
 function addLinhaUsuario(usuario) {
   let row = document.createElement('tr');
 
@@ -422,7 +422,7 @@ function procurarNoticia(){
       .then((querySnapshot) => {
           var i = 0;
         querySnapshot.forEach((doc) => {
-          if(doc.data().titulo.includes(pesquisa)){
+          if(doc.data().titulo.toLowerCase().includes(pesquisa.toLowerCase())){
           resultados.push(doc.data());
           resultados[i].id = doc.id;
           i++;
@@ -440,17 +440,19 @@ function noticiasCurtidas(id){
     .then((querySnapshot) => {
       let resultados = new Array(0);
       querySnapshot.forEach((doc) => {
+        var i = 0;
         db.collection('noticia')
         .doc(doc.data().noticia)
         .get()
         .then((noticia) => {
           resultados.push(noticia.data());
+          resultados[i].id = noticia.id;
+          i++;
         })
         
         
       }); 
       setTimeout(() => {
-        console.log(resultados);
         carregarCurtidas(resultados);
         
       }, 1000);
