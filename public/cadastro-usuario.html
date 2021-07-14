@@ -72,6 +72,8 @@
     <div class="row mt-4 justify-content-center">
       <div class="col-12 col-lg-8  p-4 border rounded bg-light">
         <h1 class="h4 text-secondary">Cadastro de Usuário</h1>
+        <div id="alert-cad-usuario" class="alert alert-success d-none" role="alert">
+        </div>
         <form id="formNovoUsuario">
 
           <div class="mb-2">
@@ -93,16 +95,15 @@
               <input type="password" maxlength="8" class="form-control" id="confirmarSenhaRegistro" required>
             </div>
           </div>
-
-          <button type="button" class="btn btn-primary bg-primary" onclick="cadastraUsuario(event);">Enviar</button>
-          <button type="button" class="btn btn-outline-primary bg-primary" onclick="limpaCampos(event);">Limpar</button>
+          <button type="button" class="btn btn-danger " onclick="cadastraUsuario(event);">Enviar</button>
+          <button type="button" class="btn btn-outline-danger" onclick="limpaCampos(event);">Limpar</button>
 
         </form>
       </div>
     </div>
   </section>
 
-  <footer class=" text-center text-white bg-principal">
+  <footer class="footer-pagina-pequena text-center text-white bg-principal">
     <div class="container p-4">
       <section class="">
         <div class="row justify-content-center">
