@@ -22,8 +22,15 @@ function cadastraUsuario(event) {
     let nomeUsuario = document.getElementById('campoNomeCadastro').value;
     let senha = document.getElementById('senhaRegistro').value;
     let confirmaSenha = document.getElementById('confirmarSenhaRegistro').value;
-
-    criaUsuario(email, senha, nomeUsuario);
+    if (senha === confirmaSenha) {
+      criaUsuario(email, senha, nomeUsuario);
+    } else {
+      let alertaCadastro = document.getElementById('alert-cad-usuario');
+      alertaCadastro.innerHTML = 'As senhas não correspondem';
+      alertaCadastro.classList.remove('d-none');
+      alertaCadastro.classList.add('alert-danger');
+      alertaCadastro.classList.remove('alert-sucess');
+    }
   }
 }
 
@@ -214,20 +221,26 @@ function criaUsuario(email, senha, nomeUsuario) {
       user.user.updateProfile({
         displayName: nomeUsuario,
       });
-      mostraModal(
-        'Usuário criado',
-        'O usuário foi inserido com sucesso com o ID: ' + user.user.uid,
-      );
-      document.location.href="index.html";
+      let alertaCadastro = document.getElementById('alert-cad-usuario');
+      alertaCadastro.innerHTML =
+        'Usuário cadastrado com sucesso com o id: ' + user.user.uid;
+      alertaCadastro.classList.remove('d-none');
+      alertaCadastro.classList.remove('alert-danger');
+      alertaCadastro.classList.add('alert-success');
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
     })
     .catch((error) => {
-      let msgErro;
-      if (error.code === 'auth/email-already-in-use') {
-        msgErro = 'O e-mail já está cadastrado para outra conta.';
-        mostraModal('Erro ao inserir o usuário.', msgErro);
-      } else {
-        mostraModal('Erro ao inserir o usuário.', error.code);
-      }
+      let alertaCadastro = document.getElementById('alert-cad-usuario');
+      alertaCadastro.innerHTML =
+        'Não foi possível cadastrar o usuário. [' +
+        trataMsgErro(error.code) +
+        ']';
+      alertaCadastro.classList.remove('d-none');
+      alertaCadastro.classList.add('alert-danger');
+      alertaCadastro.classList.remove('alert-success');
     });
 }
 
@@ -361,6 +374,8 @@ function trataMsgErro(code) {
     return 'A senha está incorreta ou o usuário não a cadastrou.';
   } else if (code === 'auth/user-not-found') {
     return 'O usuário não foi encontrado.';
+  } else if (code === 'auth/email-already-in-use') {
+    return 'O e-mail já está inserido em outra conta.';
   }
 }
 
