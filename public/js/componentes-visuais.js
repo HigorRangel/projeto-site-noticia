@@ -27,7 +27,6 @@ function noticiaMaisCurtida(listaNoticias) {
       k = noticiaGrande(noticia);
     }
   });
-
   document.getElementById('areaNoticiaGrandeInicio').innerHTML = k;
 }
 
