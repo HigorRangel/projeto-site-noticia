@@ -1,7 +1,12 @@
 body {
   font-family: Montserrat, Arial, sans-serif !important;
+  height: 100%;
 }
-
+.footer-pagina-pequena {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 a {
   text-decoration: none !important;
   cursor: pointer;
@@ -14,6 +19,7 @@ ul {
 ul li {
   list-style: none;
 }
+
 /* ===== Início - Estilos principais ===== */
 .bg-principal {
   background-color: #6b040f;
@@ -83,6 +89,14 @@ ul li {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.navbar-sombra {
+  box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.46);
+}
+
+.active {
+  border-bottom: 4px solid white;
+}
+
 /* .cliente-logado {
 } */
 
@@ -100,7 +114,7 @@ ul li {
 }
 
 .titulo-sub-secao {
-  border-bottom: 2px solid #6b040f;
+  border-bottom: 2px solid lightgray;
   font-weight: 600 !important;
   padding: 0 0.4rem 0.2rem 0.4rem;
 }
@@ -140,6 +154,13 @@ ul li {
 .imagem-noticia-pagina {
   border-radius: 15px 15px 0 0;
   border: 2px solid gray;
+}
+
+@media screen and (max-width: 1400px) {
+  .active {
+    border-bottom: none;
+    border-left: 4px solid white;
+  }
 }
 
 @media screen and (max-width: 1200px) {

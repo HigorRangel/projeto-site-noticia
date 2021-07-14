@@ -2,7 +2,6 @@ buscaNoticia('areaNoticiasInicio', 0);
 buscaTodosRegistros('noticia', noticiaMaisCurtida);
 const parametros = new URLSearchParams(window.location.search);
 
-
 function limpaCampos(event) {
   tipoUsuario = document.getElementById('tipoUsuarioRegistro').value = 0;
   email = document.getElementById('emailUsuarioRegistro').value = '';
@@ -60,8 +59,12 @@ function cadastraNoticia(event, email, senha) {
   );
 }
 
-function cadastraMensagem(){
-  criaMensagem(document.getElementById('nomeContato').value,document.getElementById('emailContato').value,document.getElementById('mensagemContato').value);
+function cadastraMensagem() {
+  criaMensagem(
+    document.getElementById('nomeContato').value,
+    document.getElementById('emailContato').value,
+    document.getElementById('mensagemContato').value,
+  );
 }
 
 function insere(nomeTabela, objetoInsercao) {
@@ -337,13 +340,27 @@ function login() {
     .then(() => {
       mostraModal('Sucesso', 'Usuário conectado com sucesso.');
       window.location.href = 'index.html';
+
+      let alertLogin = document.getElementById('alert-login');
+      alertLogin.classList.add('d-none');
     })
     .catch(function (error) {
-      mostraModal(
-        'Falha no login',
-        'Não foi possível realizar o login. Erro: ' + error.message,
-      );
+      let tipoErro = trataMsgErro(error.code);
+      let alertLogin = document.getElementById('alert-login');
+      alertLogin.innerHTML =
+        'Não foi possível realizar o Login. [' + tipoErro + ']';
+      alertLogin.classList.remove('d-none');
     });
+}
+
+function trataMsgErro(code) {
+  if (code === 'auth/invalid-email') {
+    return 'E-mail inválido ou não preenchido.';
+  } else if (code === 'auth/wrong-password') {
+    return 'A senha está incorreta ou o usuário não a cadastrou.';
+  } else if (code === 'auth/user-not-found') {
+    return 'O usuário não foi encontrado.';
+  }
 }
 
 function excluir() {
@@ -400,7 +417,7 @@ function atualizarAuth() {
       document.getElementById('nomeUsuario').innerHTML =
         usuarioLogado.displayName;
     }
-  }, 1000);
+  }, 650);
 }
 function criaMensagem(nome, email, mensagem) {
   insere('mensagem', {
@@ -414,46 +431,42 @@ function criaMensagem(nome, email, mensagem) {
   );
 }
 
-function procurarNoticia(){
-    let resultados = new Array(0);
-    let pesquisa = parametros.get('b');
-    db.collection('noticia')
-      .get()
-      .then((querySnapshot) => {
-          var i = 0;
-        querySnapshot.forEach((doc) => {
-          if(doc.data().titulo.includes(pesquisa)){
+function procurarNoticia() {
+  let resultados = new Array(0);
+  let pesquisa = parametros.get('b');
+  db.collection('noticia')
+    .get()
+    .then((querySnapshot) => {
+      var i = 0;
+      querySnapshot.forEach((doc) => {
+        if (doc.data().titulo.includes(pesquisa)) {
           resultados.push(doc.data());
           resultados[i].id = doc.id;
           i++;
-          }
-        });
-
-        carregarBusca(resultados);
+        }
       });
+
+      carregarBusca(resultados);
+    });
 }
 
-function noticiasCurtidas(id){
-    db.collection('curtidas')
-    .where('usuario', '==' , id)
+function noticiasCurtidas(id) {
+  db.collection('curtidas')
+    .where('usuario', '==', id)
     .get()
     .then((querySnapshot) => {
       let resultados = new Array(0);
       querySnapshot.forEach((doc) => {
         db.collection('noticia')
-        .doc(doc.data().noticia)
-        .get()
-        .then((noticia) => {
-          resultados.push(noticia.data());
-        })
-        
-        
-      }); 
+          .doc(doc.data().noticia)
+          .get()
+          .then((noticia) => {
+            resultados.push(noticia.data());
+          });
+      });
       setTimeout(() => {
         console.log(resultados);
         carregarCurtidas(resultados);
-        
-      }, 1000);
+      }, 300);
     });
 }
-

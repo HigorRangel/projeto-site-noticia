@@ -28,7 +28,6 @@ function noticiaMaisCurtida(listaNoticias) {
     }
   });
 
-  console.log(k);
   document.getElementById('areaNoticiaGrandeInicio').innerHTML = k;
 }
 
@@ -49,15 +48,15 @@ function embaralhaNoticias(lista) {
 
 function noticiaGrande(noticia) {
   let k = '';
-  k += '<div class="noticia-grande col-lg-12 col-xl-9 col-12 pe-xl-0">';
+  k += '<div class="noticia-grande col-lg-12 col-xl-9 col-12 pe-xl-0" style="max-height: 555.52px;">';
   k +=
     '<a href="noticia.html?id=' +
     noticia.id +
     '" class="text-center d-flex align-items-end justify-content-center">';
   k +=
-    '<img class="imagem-noticia-grande col-12" src="' +
+    '<img style="max-height: 555.52px;" class="imagem-noticia-grande col-12" src="' +
     noticia.imagemUrl +
-    '" alt="Noticia Grande">';
+    '" alt="Noticia Grande" >';
   k += '</a>';
   k +=
     '<h1 class="h5 text-center text-white titulo-noticia-grande text-black mb-xl-5 mx-xl-5 d-block d-xl-none" style="font-weight: 600; font-size: 1.2em;">' +
@@ -99,7 +98,6 @@ function tempoPostagem(data) {
 }
 
 function isCurtida(noticia) {
-  console.log(usuarioLogado);
 
   if (usuarioLogado != null) {
     buscaRegistroPorAtributo(
@@ -156,12 +154,19 @@ function carregarNoticia(noticia) {
 
 function noticiaComumDiv(noticia) {
   var k = '';
+  var texto = '';
   if (noticia.categoria === '1') {
     tipo = 'politica';
   } else if (noticia.categoria === '2') {
     tipo = 'saude';
   } else if (noticia.categoria === '3') {
     tipo = 'educacao';
+  }
+  
+  texto = tipo;
+
+  if(window.location.href.includes("index")){
+    texto = "principal";
   }
 
   k += '<div class="col-xs-12 col-sm-6 col-md-12 ">';
@@ -184,7 +189,7 @@ function noticiaComumDiv(noticia) {
   k +=
     '<a href="noticia.html?id=' +
     noticia.id +
-    '" class="h5 text-principal titulo-noticia-normal" style="font-size: 16px;">' +
+    '" class="h5 text-'+ texto +' titulo-noticia-normal" style="font-size: 16px;">' +
     noticia.titulo +
     '</a>';
   k +=
@@ -197,7 +202,7 @@ function noticiaComumDiv(noticia) {
 
   k += '<div class="col-lg-9 col-7 d-flex align-items-center">';
   k +=
-    '<p class="nome-autor m-0 text-principal" style="font-size: small; font-weight: 600;">' +
+    '<p class="nome-autor m-0 text-'+ texto +'" style="font-size: small; font-weight: 600;">' +
     noticia.autor +
     '</p>';
   k += '</div>';
@@ -205,7 +210,7 @@ function noticiaComumDiv(noticia) {
   k +=
     '<div class="col-lg-3 col-5 p-0  d-flex justify-content-end align-items-center">';
   k +=
-    '<p class="nome-autor m-0 text-principal" style="font-size: .6em; font-weight: 600;">' +
+    '<p class="nome-autor m-0 text-'+ texto +'" style="font-size: .6em; font-weight: 600;">' +
     tempoPostagem(noticia.data) +
     '</p>';
 
@@ -231,9 +236,8 @@ function carregarCurtidas(noticias){
 function carregarPaginaCurtidas(){
   
   setTimeout(() => {
-    console.log(usuarioLogado.uid)
     noticiasCurtidas(usuarioLogado.uid);
-  }, 1000);
+  }, 1500);
 }
 
 function converteTimestampData(timestamp) {
