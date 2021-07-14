@@ -20,9 +20,9 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
+  <nav class="navbar navbar-sombra navbar-expand-xxl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
-      <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
+      <a class="navbar-brand text-light" href="index.html"><img src="images/Logo Branews.svg" alt="Branews" width="150"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <i>
           <i class="fas fa-bars" style="font-size: 28px; color: #fff;"></i>
@@ -30,25 +30,37 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto me-5">
-          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+          <li class="nav-item ps-4 ps-xxl-0 me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="index.html">Início</a>
           </li>
-          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+          <li class="nav-item ps-4 ps-xxl-0 me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="politica.html">Política</a>
           </li>
-          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+          <li class="nav-item ps-4 ps-xxl-0 me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="educacao.html">Educação</a>
           </li>
-          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+          <li class="nav-item ps-4 ps-xxl-0 me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="saude.html">Saúde</a>
           </li>
-          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+          <li class="nav-item ps-4 ps-xxl-0 me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="contato.html">Fale Conosco</a>
           </li>
-          <li class="nav-item me-5  px-1 py-2 botao-navbar">
+          <li id="navLogin" class="nav-item ps-4 ps-xxl-0 me-5  px-1 py-2 botao-navbar">
             <a class="nav-link text-light" href="login.html">Login</a>
           </li>
+          <li id="navNoticia" class="nav-item ps-4 ps-xxl-0 me-5  px-1 py-2 botao-navbar d-none">
+            <a class="nav-link text-light" href="cadastro-noticia.html">Cadastrar Notícia</a>
+          </li>
+          <li id="navCurtidas" class="nav-item ps-4 ps-xxl-0 me-5  px-1 py-2 botao-navbar d-none">
+            <a class="nav-link text-light" href="noticias-curtidas.html">Minhas Curtidas</a>
+          </li>
         </ul>
+        <div id="divUsuario" class="d-none">
+          <p class="m-0 text-white fw-bold" id="nomeUsuario">Login</p>
+          <div class="d-flex justify-content-end">
+            <button class="p-0 btn btn-link text-white  text-decoration-none" type="button" onclick="logout()" id='btnDeslogar'>Sair</button>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
