@@ -2,6 +2,7 @@ buscaNoticia('areaNoticiasInicio', 0);
 buscaTodosRegistros('noticia', noticiaMaisCurtida);
 const parametros = new URLSearchParams(window.location.search);
 
+
 function limpaCampos(event) {
   tipoUsuario = document.getElementById('tipoUsuarioRegistro').value = 0;
   email = document.getElementById('emailUsuarioRegistro').value = '';
@@ -395,7 +396,7 @@ function atualizarAuth() {
       document.getElementById('navLogin').classList.add('d-none');
       document.getElementById('divUsuario').classList.remove('d-none');
       document.getElementById('navNoticia').classList.remove('d-none');
-
+      document.getElementById('navCurtidas').classList.remove('d-none');
       document.getElementById('nomeUsuario').innerHTML =
         usuarioLogado.displayName;
     }
@@ -413,18 +414,46 @@ function criaMensagem(nome, email, mensagem) {
   );
 }
 
-function procurarNoticia() {
-  let resultados = new Array(0);
-  let pesquisa = parametros.get('b');
-  db.collection('noticia')
+function procurarNoticia(){
+    let resultados = new Array(0);
+    let pesquisa = parametros.get('b');
+    db.collection('noticia')
+      .get()
+      .then((querySnapshot) => {
+          var i = 0;
+        querySnapshot.forEach((doc) => {
+          if(doc.data().titulo.includes(pesquisa)){
+          resultados.push(doc.data());
+          resultados[i].id = doc.id;
+          i++;
+          }
+        });
+
+        carregarBusca(resultados);
+      });
+}
+
+function noticiasCurtidas(id){
+    db.collection('curtidas')
+    .where('usuario', '==' , id)
     .get()
     .then((querySnapshot) => {
+      let resultados = new Array(0);
       querySnapshot.forEach((doc) => {
-        if (doc.data().titulo.includes(pesquisa)) {
-          resultados.push(doc.data());
-        }
-      });
-
-      carregarBusca(resultados);
+        db.collection('noticia')
+        .doc(doc.data().noticia)
+        .get()
+        .then((noticia) => {
+          resultados.push(noticia.data());
+        })
+        
+        
+      }); 
+      setTimeout(() => {
+        console.log(resultados);
+        carregarCurtidas(resultados);
+        
+      }, 1000);
     });
 }
+

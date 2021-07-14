@@ -13,8 +13,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase.js"></script>
-  <script type="text/javascript" src="js/componentes-visuais.js"></script>
 
+  <script type="text/javascript" src="js/componentes-visuais.js"></script>
   <script type="text/javascript" src="js/env.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
 
@@ -24,7 +24,7 @@
 <body onload="atualizarAuth()">
   <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
-      <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
+      <a onclick="noticiasCurtidas()" class="navbar-brand text-light" href="#">NOTÍCIAS</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <i>
           <i class="fas fa-bars" style="font-size: 28px; color: #fff;"></i>
@@ -52,6 +52,9 @@
           </li>
           <li id="navNoticia" class="nav-item me-5  px-1 py-2 botao-navbar d-none">
             <a class="nav-link text-light" href="cadastro-noticia.html">Cadastrar Notícia</a>
+          </li>
+          <li id="navCurtidas" class="nav-item me-5  px-1 py-2 botao-navbar d-none">
+            <a class="nav-link text-light" href="noticias-curtidas.html">Minhas Curtidas</a>
           </li>
         </ul>
         <div id="divUsuario" class="d-none">

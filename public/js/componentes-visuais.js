@@ -224,6 +224,18 @@ function carregarBusca(noticias) {
   noticiaComum(noticias, 'areaNoticiasBusca');
 }
 
+function carregarCurtidas(noticias){
+  noticiaComum(noticias,'areaNoticiasCurtidas');
+}
+
+function carregarPaginaCurtidas(){
+  
+  setTimeout(() => {
+    console.log(usuarioLogado.uid)
+    noticiasCurtidas(usuarioLogado.uid);
+  }, 1000);
+}
+
 function converteTimestampData(timestamp) {
   let data = new Date(timestamp.seconds * 1000);
   (dia = data.getDate().toString()),
