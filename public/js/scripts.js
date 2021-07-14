@@ -218,6 +218,7 @@ function criaUsuario(email, senha, nomeUsuario) {
         'Usuário criado',
         'O usuário foi inserido com sucesso com o ID: ' + user.user.uid,
       );
+      document.location.href="index.html";
     })
     .catch((error) => {
       let msgErro;

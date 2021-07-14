@@ -57,18 +57,23 @@ function noticiaGrande(noticia) {
     noticia.imagemUrl +
     '" alt="Noticia Grande" >';
   k += '</a>';
+  k += '<a href="noticia.html?id='+ noticia.id +'">';
+
   k +=
     '<h1 class="h5 text-center text-white titulo-noticia-grande text-black mb-xl-5 mx-xl-5 d-block d-xl-none" style="font-weight: 600; font-size: 1.2em;">' +
     noticia.titulo +
     '</h1>';
+  k += '</a>';
   k += ' </div>';
 
   k +=
     '<div class="corpo-noticia-grande d-xl-block d-none col-12 col-xl-3 mt-lg-0 mt-5 shadow-principal" style="max-height: 555.52px;">';
+  k += '<a href="noticia.html?id='+ noticia.id +'">';
   k +=
     ' <h1 class="h6 text-principal pt-3 py text-center titulo-sub-secao d-none d-lg-block" style="font-weight: 600;"><span class="">' +
     noticia.titulo +
     '</span></h1>';
+    k += '</a>';
   k +=
     ' <div class="corpo-mensagem-grande m-3 d-flex flex-column justify-content-center" style="max-height: 542px;">';
   k +=
@@ -236,7 +241,7 @@ function carregarPaginaCurtidas(){
   
   setTimeout(() => {
     noticiasCurtidas(usuarioLogado.uid);
-  }, 1500);
+  }, 500);
 }
 
 function converteTimestampData(timestamp) {
