@@ -400,7 +400,7 @@ function atualizarAuth() {
       document.getElementById('nomeUsuario').innerHTML =
         usuarioLogado.displayName;
     }
-  }, 1000);
+  }, 350);
 }
 function criaMensagem(nome, email, mensagem) {
   insere('mensagem', {
