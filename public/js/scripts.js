@@ -2,6 +2,7 @@ buscaNoticia('areaNoticiasInicio', 0);
 buscaTodosRegistros('noticia', noticiaMaisCurtida);
 const parametros = new URLSearchParams(window.location.search);
 
+
 function limpaCampos(event) {
   tipoUsuario = document.getElementById('tipoUsuarioRegistro').value = 0;
   email = document.getElementById('emailUsuarioRegistro').value = '';
@@ -373,7 +374,7 @@ function atualizarAuth() {
       document.getElementById('navLogin').classList.add('d-none');
       document.getElementById('divUsuario').classList.remove('d-none');
       document.getElementById('navNoticia').classList.remove('d-none');
-
+      document.getElementById('navCurtidas').classList.remove('d-none');
       document.getElementById('nomeUsuario').innerHTML =
         usuarioLogado.displayName;
     }
@@ -396,9 +397,12 @@ function procurarNoticia(){
     db.collection('noticia')
       .get()
       .then((querySnapshot) => {
+          var i = 0;
         querySnapshot.forEach((doc) => {
           if(doc.data().titulo.includes(pesquisa)){
           resultados.push(doc.data());
+          resultados[i].id = doc.id;
+          i++;
           }
         });
 
@@ -406,9 +410,9 @@ function procurarNoticia(){
       });
 }
 
-function noticiasCurtidas(){
-  db.collection('curtidas')
-    .where('usuario', '==' , usuarioLogado.uid)
+function noticiasCurtidas(id){
+    db.collection('curtidas')
+    .where('usuario', '==' , id)
     .get()
     .then((querySnapshot) => {
       let resultados = new Array(0);
@@ -420,7 +424,12 @@ function noticiasCurtidas(){
           resultados.push(noticia.data());
         })
         
-      });
-      console.log(resultados); 
+        
+      }); 
+      setTimeout(() => {
+        console.log(resultados);
+        carregarCurtidas(resultados);
+        
+      }, 1000);
     });
 }

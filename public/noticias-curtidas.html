@@ -13,14 +13,13 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase.js"></script>
-  <script type="text/javascript" src="js/componentes-visuais.js"></script>
-
   <script type="text/javascript" src="js/env.js"></script>
+  <script type="text/javascript" src="js/componentes-visuais.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
   <title>Site de noticia</title>
 </head>
 
-<body onload = "atualizarAuth(); procurarNoticia()">
+<body onload = "atualizarAuth(); carregarPaginaCurtidas();">
   <nav class="navbar navbar-expand-xl navbar-light bg-principal fixed-top py-lg-0">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#">NOTÍCIAS</a>
@@ -67,10 +66,10 @@
   <section class="container secao-principal p-2">
     <div class=" row flex-row-reverse flex-lg-row pt-4">
       <div class="col-12 col-xl-9">
-        <h3 class="h3 text-center text-principal mb-0" style="font-weight: 600;">Resultado da busca</h3>
+        <h3 class="h3 text-center text-principal mb-0" style="font-weight: 600;">Notícias curtidas anteriormente</h3>
         <!-- Notícias menores -->
         <div class=" py-3 px-3  border-radius-principal shadow-principal mt-2">
-            <div class="row" id="areaNoticiasBusca">
+            <div class="row" id="areaNoticiasCurtidas">
                 
             </div>
         </div>
@@ -94,7 +93,7 @@
           <h1 class="h5 text-center text-principal"><span class="titulo-sub-secao">Busca de Notícias</span></h1>
           <fieldset class="py-3 border-bottom border-2 form-group d-flex align-items-center justify-content-center mt-3">
             <input type="text" class="text-center w-100 py-1 pe-5 ps-3 border-radius-principal border-principal campo-busca" id="campo-busca" placeholder="Digite o título para buscar" style="float: left; font-size: 12px;">
-            <a onclick="buscarResultado()"><i class="fas fa-search text-principal" style="font-size: 18px; margin-left: -35px;"></i></a>
+            <a  onclick="buscarResultado()"><i class="fas fa-search text-principal" style="font-size: 18px; margin-left: -35px;"></i></a>
           </fieldset>
           <div>
             <h1 class="h5 text-center text-principal mt-3"><span class="titulo-sub-secao">Categorias</span></h1>
